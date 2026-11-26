@@ -1,0 +1,325 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Pedal popup tests</title>
+<pre id="result">Running...</pre>
+<iframe id="app" title="Test app" src="../mockups/index.html#popup" style="width: 1200px; height: 900px"></iframe>
+<script>
+document.querySelector('#app').addEventListener('load', async () => {
+  const result = document.querySelector('#result');
+  const assert = (condition, message) => { if (!condition) throw new Error(message); };
+  const tick = () => new Promise(resolve => setTimeout(resolve, 30));
+  try {
+    const frame = document.querySelector('#app');
+    const win = frame.contentWindow;
+    const doc = frame.contentDocument;
+    const click = selector => {
+      const element = doc.querySelector(selector);
+      assert(element, `Missing ${selector}`);
+      element.click();
+    };
+    assert(doc.querySelectorAll('[data-popup-example]').length === 24, 'All pedal examples');
+    click('[data-popup-example="example-compressor"]');
+    assert(doc.querySelector('#study-pedal-dialog').open, 'Open example');
+    assert(doc.querySelector('.popup-face .effect-knob') && doc.querySelector('.popup-face .popup-plugin')
+      && doc.querySelector('.popup-face [data-remove-pedal]'), 'Controls are on pedal face');
+    assert(!doc.querySelector('[data-demo-vst-editor]') && doc.querySelector('[data-demo-vst-open]').textContent === 'Choose VST', 'Only choose VST before selection');
+    assert(!doc.querySelector('[data-demo-assign]') && doc.querySelector('.popup-parameter-label').textContent === 'Blend', 'Only labels before selecting a VST');
+    const knob = doc.querySelector('#study-expanded-pedal .effect-knob');
+    knob.dispatchEvent(new win.KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
+    assert(knob.getAttribute('aria-valuenow') === '51', 'Adjust example knob');
+    click('[data-demo-vst-open]');
+    const search = doc.querySelector('#demo-vst-search');
+    search.value = 'delay';
+    search.dispatchEvent(new win.Event('input', { bubbles: true }));
+    assert(doc.querySelectorAll('[data-demo-vst-select]').length === 1, 'Search simulated VSTs');
+    click('[data-demo-vst-select="Example Delay"]');
+    await tick();
+    assert(doc.querySelector('.popup-plugin').textContent.includes('Example Delay'), 'Select simulated VST');
+    assert(doc.querySelector('[data-demo-vst-open]').textContent === 'Change VST', 'Change VST after selection');
+    const assignment = doc.querySelector('[data-demo-assign="Blend"]');
+    assert(!assignment.disabled && assignment.value === 'Blend', 'Default parameter assignment');
+    assignment.value = 'Filter';
+    assignment.dispatchEvent(new win.Event('change', { bubbles: true }));
+    let mapped = doc.querySelector('[data-knob="Blend"]');
+    assert(mapped.getAttribute('aria-label') === 'COMPRESSOR Filter', 'Assign VST parameter');
+    mapped.dispatchEvent(new win.KeyboardEvent('keydown', { key: 'End', bubbles: true }));
+    click('#study-expanded-pedal [data-bypass]');
+    assert(doc.querySelector('[data-demo-assign="Blend"]').value === 'Filter'
+      && doc.querySelector('[data-knob="Blend"]').getAttribute('aria-valuenow') === '100', 'Assignment and value survive redraw');
+    click('[data-demo-vst-editor]');
+    assert(doc.querySelector('#demo-vst-editor').open
+      && doc.querySelector('#demo-vst-editor-title').textContent === 'Example Delay', 'Open selected demo VST');
+    click('[data-demo-vst-editor-close]');
+    await tick();
+    click('[data-demo-vst-open]');
+    click('[data-demo-vst-select="Example Reverb"]');
+    await tick();
+    assert(doc.querySelector('.popup-plugin').textContent.includes('Example Reverb'), 'Change selected VST');
+    assert(doc.querySelector('[data-demo-assign="Blend"]').value === 'Blend'
+      && ![...doc.querySelector('[data-demo-assign="Blend"]').options].some(option => option.value === 'Filter'), 'New VST resets incompatible assignments');
+    click('#study-expanded-pedal [data-bypass]');
+    assert(doc.querySelector('#study-expanded-pedal [data-bypass]').getAttribute('aria-pressed') === 'true', 'Toggle bypass');
+    click('#study-expanded-pedal [data-remove-pedal]');
+    await tick();
+    assert(!doc.querySelector('#study-pedal-dialog').open && doc.querySelectorAll('[data-popup-example]').length === 23, 'Remove example');
+    click('#reset-popup-study');
+    assert(doc.querySelectorAll('[data-popup-example]').length === 24, 'Reset examples');
+    click('[data-popup-example="example-halo"]');
+    assert(doc.querySelectorAll('#study-expanded-pedal .effect-knob').length === 6, 'Gallery reverb controls');
+    const artPosition = (selector, axis) => {
+      const art = doc.querySelector('.popup-gallery-art').getBoundingClientRect();
+      const box = doc.querySelector(selector).getBoundingClientRect();
+      return axis === 'x' ? ((box.left + box.width / 2 - art.left) / art.width * 202 - 1)
+        : ((box.top + box.height / 2 - art.top) / art.height * (doc.querySelector('.popup-shape-delay') ? 188 : 222)
+          + (doc.querySelector('.popup-shape-delay') ? 32 : 15));
+    };
+    assert(Math.abs(artPosition('[data-knob="Pre-delay"]', 'x') - 157) < 1
+      && Math.abs(artPosition('[data-knob="Pre-delay"]', 'y') - 67) < 1, 'Reverb keeps original knob positions');
+    assert(Math.abs(artPosition('.popup-art-screen', 'y') - 123) < 1, 'Reverb screen replaces line design');
+    const preDelay = doc.querySelector('[data-knob="Pre-delay"]');
+    preDelay.dispatchEvent(new win.KeyboardEvent('keydown', { key: 'End', bubbles: true }));
+    assert(preDelay.getAttribute('aria-valuenow') === '100', 'Adjust gallery-only control');
+    click('[data-study-close]');
+    await tick();
+    click('[data-popup-example="example-spring"]');
+    assert(doc.querySelectorAll('#study-expanded-pedal .effect-knob').length === 6
+      && !doc.querySelector('#study-expanded-pedal [data-knob="Tone"]'), 'Spring preview has no Tone dial');
+    click('[data-study-close]');
+    await tick();
+    click('[data-popup-example="example-amp"]');
+    assert(doc.querySelectorAll('#study-expanded-pedal .effect-knob').length === 2, 'Gallery amp controls');
+    assert(Math.abs(artPosition('[data-knob="Gain"]', 'x') - 39) < 1
+      && Math.abs(artPosition('.popup-art-screen', 'y') - 85) < 1
+      && doc.querySelectorAll('.popup-art-switch').length === 2, 'Amp keeps original screen and switches');
+    click('[data-study-close]');
+    await tick();
+    click('[data-popup-example="example-tide"]');
+    const delay = doc.querySelector('.popup-shape-delay .popup-gallery-art').getBoundingClientRect();
+    const delayScreen = doc.querySelector('.popup-shape-delay .popup-plugin').getBoundingClientRect();
+    const delayKnob = doc.querySelector('.popup-shape-delay .effect-knob').getBoundingClientRect();
+    assert(delay.width > delay.height && delayKnob.right <= delayScreen.left
+      && Math.abs(artPosition('.popup-art-screen', 'y') - 80.5) < 1
+      && doc.querySelector('.popup-gallery-art .gallery-emblem'), 'Delay keeps original screen and artwork');
+    click('[data-demo-vst-open]');
+    click('[data-demo-vst-select="Example Delay"]');
+    await tick();
+    const mode = doc.querySelector('[data-demo-assign="Mode"]');
+    mode.value = 'Filter';
+    mode.dispatchEvent(new win.Event('change', { bubbles: true }));
+    click('[data-demo-mode]');
+    assert(doc.querySelector('[data-demo-mode]').getAttribute('aria-pressed') === 'true'
+      && doc.querySelector('[data-demo-assign="Mode"]').value === 'Filter', 'Mode footswitch maps and toggles');
+    const timeAssignment = doc.querySelector('[data-demo-assign="Time"]');
+    timeAssignment.value = 'Filter';
+    timeAssignment.dispatchEvent(new win.Event('change', { bubbles: true }));
+    assert(doc.querySelector('[data-knob="Time"]').getAttribute('aria-valuenow') === '100', 'Dial uses shared footswitch value');
+    click('[data-demo-mode]');
+    assert(doc.querySelector('[data-knob="Time"]').getAttribute('aria-valuenow') === '0', 'Footswitch updates shared dial');
+    doc.querySelector('[data-knob="Time"]').dispatchEvent(new win.KeyboardEvent('keydown', { key: 'End', bubbles: true }));
+    assert(doc.querySelector('[data-demo-mode]').getAttribute('aria-pressed') === 'true', 'Dial updates shared footswitch');
+    frame.style.width = '320px';
+    await tick();
+    assert(doc.querySelector('#study-pedal-dialog').scrollWidth <= doc.querySelector('#study-pedal-dialog').clientWidth, 'Narrow delay layout');
+    frame.style.width = '1200px';
+    click('[data-study-close]');
+    await tick();
+    win.location.hash = '#board-2';
+    await tick();
+    const checkDials = expected => {
+      const dials = [...doc.querySelectorAll('#study-expanded-pedal .popup-art-dial')];
+      assert(dials.length === expected.length && expected.every(name => doc.querySelector(`[data-knob="${name}"]`)), 'Board popup shows all gallery and board dials');
+      const overlaps = (a, b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+      const screen = doc.querySelector('.popup-art-screen').getBoundingClientRect();
+      for (const dial of dials) {
+        const knob = dial.querySelector('.effect-knob').getBoundingClientRect();
+        assert(!overlaps(knob, screen), 'Dial does not overlap VST screen');
+        for (const other of dials.filter(item => item !== dial)) {
+          assert(!overlaps(knob, other.querySelector('.effect-knob').getBoundingClientRect())
+            && !overlaps(knob, other.querySelector('.popup-art-label').getBoundingClientRect()),
+            `${dial.querySelector('.effect-knob').dataset.knob} overlaps ${other.querySelector('.effect-knob').dataset.knob}`);
+        }
+      }
+    };
+    click('[data-study-expand="tape-6"]');
+    checkDials(['Time', 'Feedback', 'Mix', 'Age', 'Wow', 'Flutter']);
+    doc.querySelector('[data-knob="Wow"]').dispatchEvent(new win.KeyboardEvent('keydown', { key: 'End', bubbles: true }));
+    assert(doc.querySelector('[data-knob="Wow"]').getAttribute('aria-valuenow') === '100', 'Board gallery dial is interactive');
+    click('[data-demo-vst-open]');
+    click('[data-demo-vst-select="Example Delay"]');
+    await tick();
+    checkDials(['Time', 'Feedback', 'Mix', 'Age', 'Wow', 'Flutter']);
+    frame.style.width = '320px';
+    await tick();
+    checkDials(['Time', 'Feedback', 'Mix', 'Age', 'Wow', 'Flutter']);
+    frame.style.width = '1200px';
+    click('[data-study-close]');
+    await tick();
+    click('[data-study-expand="halo-7"]');
+    checkDials(['Decay', 'Pre-delay', 'Size', 'Low', 'High', 'Mix']);
+    assert(!doc.querySelector('#study-expanded-pedal [data-knob="Tone"]'), 'Room reverb has no Tone dial');
+    click('[data-demo-vst-open]');
+    click('[data-demo-vst-select="Example Reverb"]');
+    await tick();
+    checkDials(['Decay', 'Pre-delay', 'Size', 'Low', 'High', 'Mix']);
+    const reverbAssignment = doc.querySelector('[data-demo-assign="Decay"]');
+    reverbAssignment.value = 'Tone';
+    reverbAssignment.dispatchEvent(new win.Event('change', { bubbles: true }));
+    assert(doc.querySelector('[data-knob="Decay"]').getAttribute('aria-label') === 'ROOM REVERB Tone', 'Existing Tone mapping remains available');
+    frame.style.width = '320px';
+    await tick();
+    checkDials(['Decay', 'Pre-delay', 'Size', 'Low', 'High', 'Mix']);
+    frame.style.width = '1200px';
+    click('[data-study-close]');
+    await tick();
+    click('[data-category="Reverb"]');
+    click('[data-add-type="spring"]');
+    click('[data-study-expand^="spring-"]');
+    checkDials(['Dwell', 'Decay', 'Pre-delay', 'Low', 'High', 'Mix']);
+    assert(!doc.querySelector('#study-expanded-pedal [data-knob="Tone"]'), 'Spring reverb has no Tone dial');
+    click('[data-demo-vst-open]');
+    click('[data-demo-vst-select="Example Reverb"]');
+    await tick();
+    checkDials(['Dwell', 'Decay', 'Pre-delay', 'Low', 'High', 'Mix']);
+    click('[data-study-close]');
+    await tick();
+    click('[data-category="Amp & Cab"]');
+    click('[data-add-type="amp"]');
+    click('[data-study-expand^="amp-"]');
+    checkDials(['Gain', 'Level', 'Bass', 'Treble']);
+    click('[data-demo-vst-open]');
+    click('[data-demo-vst-select="Example Delay"]');
+    await tick();
+    checkDials(['Gain', 'Level', 'Bass', 'Treble']);
+    frame.style.width = '320px';
+    await tick();
+    checkDials(['Gain', 'Level', 'Bass', 'Treble']);
+    frame.style.width = '1200px';
+    click('[data-study-close]');
+    await tick();
+    click('[data-study-expand="compressor-0"]');
+    assert(doc.querySelector('#study-expanded-pedal .popup-detail'), 'Board uses popup design');
+    click('#study-expanded-pedal [data-remove-pedal]');
+    await tick();
+    assert(!doc.querySelector('#study-pedal-dialog').open && !doc.querySelector('[data-study-expand="compressor-0"]'), 'Remove board pedal');
+    click('[data-study-expand="looper"]');
+    assert(doc.querySelector('#study-expanded-pedal .looper'), 'Looper popup remains available');
+    click('[data-study-close]');
+    await tick();
+    win.location.hash = '#wood';
+    await tick();
+    click('[data-category="Reverb"]');
+    click('[data-add-type="halo"]');
+    let room = doc.querySelector('#pedals [data-pedal^="halo-"]');
+    const roomId = room.dataset.pedal;
+    assert(room.querySelector('.popup-shape-reverb') && room.querySelectorAll('.effect-knob').length === 6
+      && !room.querySelector('[data-knob="Tone"]') && !doc.querySelector('#study-pedal-dialog').open, 'Reverb appears directly on the board');
+    room.querySelector('[data-knob="Pre-delay"]').dispatchEvent(new win.KeyboardEvent('keydown', { key: 'End', bubbles: true }));
+    assert(room.querySelector('[data-knob="Pre-delay"]').getAttribute('aria-valuenow') === '100', 'Board dial is interactive');
+    click(`[data-demo-vst-open="${roomId}"]`);
+    click('[data-demo-vst-select="Example Reverb"]');
+    await tick();
+    room = doc.querySelector(`[data-pedal="${roomId}"]`);
+    assert(room.querySelector('.popup-plugin').textContent.includes('Example Reverb')
+      && room.querySelector('[data-demo-vst-editor]') && room.querySelector('[data-demo-assign="Decay"]'), 'Board VST actions and assignments');
+    const roomAssignment = room.querySelector('[data-demo-assign="Decay"]');
+    roomAssignment.value = 'Size';
+    roomAssignment.dispatchEvent(new win.Event('change', { bubbles: true }));
+    room.querySelector('[data-knob="Decay"]').dispatchEvent(new win.KeyboardEvent('keydown', { key: 'End', bubbles: true }));
+    assert(room.querySelector('[data-knob="Size"]').getAttribute('aria-valuenow') === '100', 'Board dials share mapped values');
+    click(`[data-bypass="${roomId}"]`);
+    room = doc.querySelector(`[data-pedal="${roomId}"]`);
+    assert(room.querySelector('[data-bypass]').getAttribute('aria-pressed') === 'false'
+      && room.querySelector('[data-demo-assign="Decay"]').value === 'Size', 'Board state survives redraw');
+    click(`[data-demo-vst-editor="${roomId}"]`);
+    assert(doc.querySelector('#demo-vst-editor').open, 'Open board VST editor');
+    click('[data-demo-vst-editor-close]');
+    await tick();
+    click('[data-category="Delay"]');
+    click('[data-add-type="tape"]');
+    let tape = doc.querySelector('#pedals [data-pedal^="tape-"]');
+    const tapeId = tape.dataset.pedal;
+    assert(tape.querySelector('.popup-shape-delay') && tape.querySelectorAll('.effect-knob').length === 6, 'Delay uses the popup artwork directly');
+    click(`[data-demo-vst-open="${tapeId}"]`);
+    click('[data-demo-vst-select="Example Delay"]');
+    await tick();
+    tape = doc.querySelector(`[data-pedal="${tapeId}"]`);
+    const textMeasure = doc.createElement('canvas').getContext('2d');
+    for (const select of tape.querySelectorAll('.popup-art-label select')) {
+      const style = win.getComputedStyle(select);
+      textMeasure.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+      const required = textMeasure.measureText(select.value.toUpperCase()).width
+        + parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+      assert(select.getBoundingClientRect().width + 1 >= required, `${select.value} assignment is readable on the board`);
+    }
+    const boardMode = tape.querySelector('[data-demo-assign="Mode"]');
+    boardMode.value = 'Time';
+    boardMode.dispatchEvent(new win.Event('change', { bubbles: true }));
+    tape = doc.querySelector(`[data-pedal="${tapeId}"]`);
+    tape.querySelector('[data-knob="Time"]').dispatchEvent(new win.KeyboardEvent('keydown', { key: 'End', bubbles: true }));
+    assert(tape.querySelector('[data-demo-mode]').getAttribute('aria-pressed') === 'true', 'Board dial updates mapped footswitch');
+    click(`[data-demo-mode="${tapeId}"]`);
+    tape = doc.querySelector(`[data-pedal="${tapeId}"]`);
+    assert(tape.querySelector('[data-knob="Time"]').getAttribute('aria-valuenow') === '0'
+      && doc.querySelector(`[data-pedal="${roomId}"] .popup-plugin`).textContent.includes('Example Reverb'), 'Board footswitch updates only its pedal');
+    tape.querySelector('[data-drag]').dispatchEvent(new win.KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true }));
+    assert(doc.querySelector('#pedals > [data-pedal]').dataset.pedal === tapeId, 'Board pedal remains keyboard reorderable');
+    click('#demo-cables-toggle');
+    await tick();
+    assert(doc.querySelectorAll('#cables .patch-link').length === 2, 'Board cables connect pedal chain');
+    click(`[data-remove-pedal="${tapeId}"]`);
+    assert(!doc.querySelector(`[data-pedal="${tapeId}"]`) && doc.querySelector(`[data-pedal="${roomId}"]`), 'Remove only the selected board pedal');
+    click('[data-category="Dynamics"]');
+    click('[data-add-type="compressor"]');
+    const compressor = doc.querySelector('#pedals [data-pedal^="compressor-"]');
+    assert(compressor.querySelector('.popup-shape-stompbox') && compressor.querySelector('[data-demo-vst-open]'), 'Compact pedal uses the popup design directly');
+    click('[data-category="Amp & Cab"]');
+    for (const type of ['amp', 'cab']) {
+      click(`[data-add-type="${type}"]`);
+      const pedal = doc.querySelector(`#pedals [data-pedal^="${type}-"]`);
+      assert(pedal.querySelector('.popup-shape-amp-cab') && pedal.querySelectorAll('.effect-knob').length === 4
+        && pedal.querySelector('.popup-gallery-art svg').getAttribute('viewBox') === '-1 15 202 222', 'Amp and cab use sized interactive artwork');
+    }
+    while (doc.querySelector('#pedals .board-pedal [data-remove-pedal]')) click('#pedals .board-pedal [data-remove-pedal]');
+    const types = [...doc.querySelectorAll('[data-add-type]')].map(button => button.dataset.addType);
+    for (const width of [1200, 320]) {
+      frame.style.width = `${width}px`;
+      await tick();
+      const looper = doc.querySelector('#pedals .looper');
+      const loopBox = looper.getBoundingClientRect();
+      assert(looper.querySelector('.looper-utility').getBoundingClientRect().bottom <= loopBox.bottom,
+        `Looper controls fit at ${width}px`);
+      const rails = [...doc.querySelectorAll('#board .rail')].map(rail => rail.getBoundingClientRect());
+      assert(rails[1].top - rails[0].top < 200, 'Default board rails are closer together');
+      for (const type of types) {
+        click(`[data-add-type="${type}"]`);
+        let pedal = doc.querySelector(`#pedals [data-pedal^="${type}-"]`);
+        assert(pedal, `${type} was added to the default board`);
+        const checkBoardHeight = () => {
+          const face = pedal.querySelector('[data-gallery-body], .popup-face');
+          const box = face.getBoundingClientRect();
+          assert(Math.abs(box.height - loopBox.height) < 1 && Math.abs(box.top - loopBox.top) < 1,
+            `${type} enclosure matches the looper height and alignment at ${width}px`);
+          if (face.matches('.popup-face')) assert(face.scrollHeight <= face.clientHeight + 1, `${type} controls fit at ${width}px`);
+          const screen = pedal.querySelector('.popup-plugin').getBoundingClientRect();
+          for (const button of pedal.querySelectorAll('.popup-plugin button')) {
+            const bounds = button.getBoundingClientRect();
+            assert(bounds.top >= screen.top && bounds.bottom <= screen.bottom, `${type} VST buttons fit at ${width}px`);
+          }
+        };
+        checkBoardHeight();
+        if (['compressor', 'envelope', 'tape', 'halo', 'amp'].includes(type)) {
+          pedal.querySelector('[data-demo-vst-open]').click();
+          click('[data-demo-vst-select="Example Reverb"]');
+          await tick();
+          pedal = doc.querySelector(`#pedals [data-pedal^="${type}-"]`);
+          checkBoardHeight();
+        }
+        pedal.querySelector('[data-remove-pedal]').click();
+      }
+    }
+    result.textContent = 'PASS';
+  } catch (error) {
+    result.textContent = `FAIL: ${error.stack || error}`;
+  }
+});
+</script>

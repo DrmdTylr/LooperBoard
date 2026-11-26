@@ -416,3 +416,13 @@
 2026-11-26 12:57:23.441: [INFO] BookmarksLoadDropped droppedNodes=0
 2026-11-26 12:57:23.441: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
 2026-11-26 13:07:59.355: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-11-26 16:05:27.503: [INFO] CurrentProfilePath: C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\Release\Looper.exe.WebView2\EBWebView\Default
+2026-11-26 16:05:27.503: [INFO] Profiles total count: 1
+2026-11-26 16:05:27.503: [INFO] Profile: name=Profile 1 path=C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\Release\Looper.exe.WebView2\EBWebView\Default lastActive=2026-11-26T13:06:14.936Z
+2026-11-26 16:05:27.503: [INFO] LastUsedProfileDir: C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\Release\Looper.exe.WebView2\EBWebView\Default
+2026-11-26 16:05:27.503: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\Release\Looper.exe.WebView2\EBWebView\Default lastActive=2026-11-26T13:06:14.936Z
+2026-11-26 16:05:27.503: [INFO] OnDoneLoading sync enabled: 0
+2026-11-26 16:05:27.503: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-11-26 16:05:27.503: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-11-26 16:05:27.503: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-11-26 16:05:39.179: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1

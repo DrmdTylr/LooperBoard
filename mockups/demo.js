@@ -57,6 +57,7 @@ let state;
 let study = '';
 let studyPage = 'loop';
 let expandedPedal = null;
+let demoVstTarget = null;
 let toastTimer;
 let lastTempoTap = 0;
 let confirmation;
@@ -76,7 +77,8 @@ function freshState(mode) {
     { id: 1, name: 'Rhythm foundation', volume: 82, pan: 0, active: true, solo: false },
     { id: 2, name: 'A little atmosphere', volume: 64, pan: -24, active: true, solo: false },
     { id: 3, name: 'Lead idea', volume: 75, pan: 18, active: true, solo: false }
-  ], chain: mode.startsWith('board-') ? previewChain : mode === 'wood' ? [{ id: 'looper', type: 'looper' }]
+  ], chain: mode === 'popup' ? Object.keys(effects).map(type => ({ id: `example-${type}`, type, active: true }))
+    : mode.startsWith('board-') ? previewChain : mode === 'wood' ? [{ id: 'looper', type: 'looper' }]
     : [{ id: 'grit-1', type: 'grit', active: true }, { id: 'looper', type: 'looper' }, { id: 'halo-1', type: 'halo', active: true }],
   levels: { input: 80, live: 70, loop: 85, output: 60 },
   footer: Object.fromEntries(Object.entries(footerControls).map(([name, control]) => [name, control.value])),
@@ -196,7 +198,7 @@ function galleryAppearance(type) {
   };
 }
 
-function galleryPedal(type) {
+function galleryPedal(type, interactive = false) {
         const effect = effects[type];
         const category = effect.category;
         const { color, ink, index } = galleryAppearance(type);
@@ -221,19 +223,20 @@ function galleryPedal(type) {
         }).join('');
         const largeArt = `${galleryJacks(11, 189, 135)}<rect data-gallery-body x="11" y="${layout === 'delay' ? 44 : 27}" width="178" height="${layout === 'delay' ? 164 : 198}" rx="${layout === 'reverb' ? 13 : 7}" fill="${color}" stroke="#25231f" stroke-width="4"/>
           <rect x="15" y="${layout === 'delay' ? 48 : 31}" width="170" height="${layout === 'delay' ? 156 : 190}" rx="${layout === 'reverb' ? 10 : 5}" fill="url(#finish-${type})" stroke="#fff" stroke-opacity=".3"/>
-          <text x="100" y="${layout === 'delay' ? 57 : 42}" text-anchor="middle" fill="var(--gallery-ink)" font-size="6" font-weight="800" letter-spacing="1.5">LOOPER / ${effect.category.toUpperCase()}</text>
-          ${largeKnobs}
-          ${layout === 'delay' ? `<rect x="71" y="66" width="58" height="29" rx="3" fill="#363839" stroke="#c8c0b4"/>
+          <text x="100" y="${layout === 'delay' ? 57 : 42}" text-anchor="middle" fill="var(--gallery-ink)" font-size="6" font-weight="800" letter-spacing="${interactive ? '.5' : '1.5'}">${interactive ? effect.name : `LOOPER / ${effect.category.toUpperCase()}`}</text>
+          ${interactive ? '' : largeKnobs}
+          ${layout === 'delay' && !interactive ? `<rect x="71" y="66" width="58" height="29" rx="3" fill="#363839" stroke="#c8c0b4"/>
             <text x="100" y="78" text-anchor="middle" fill="#dfebe4" font-size="5">${type === 'tape' ? 'TAPE ECHO' : 'DIGITAL'}</text>
             <text x="100" y="88" text-anchor="middle" fill="#dfebe4" font-size="6">TIME / FEEDBACK</text>` : ''}
-          ${layout === 'amp-cab' ? `<rect x="68" y="55" width="64" height="60" rx="5" fill="#242b2b" stroke="#b6ae9f" stroke-width="2"/>
+          ${layout === 'amp-cab' && !interactive ? `<rect x="68" y="55" width="64" height="60" rx="5" fill="#242b2b" stroke="#b6ae9f" stroke-width="2"/>
             <text x="100" y="75" text-anchor="middle" fill="#d2e8dd" font-size="9" font-weight="700">${type === 'amp' ? 'AMP' : 'CAB'}</text>
             <path d="M78 94 H122 M78 100 H112" stroke="#95c7b5" stroke-width="2"/>
-            <g fill="#e1ddd2" stroke="#595650"><rect x="49" y="130" width="28" height="12" rx="2"/><rect x="86" y="130" width="28" height="12" rx="2"/><rect x="123" y="130" width="28" height="12" rx="2"/></g>` : ''}
-          <text class="gallery-pedal-name" x="100" y="${layout === 'amp-cab' ? 158 : layout === 'delay' ? 154 : 160}" text-anchor="middle" fill="var(--gallery-ink)" font-size="8" font-weight="800">${effect.name}</text>
-          ${layout === 'delay' || layout === 'reverb' ? `<g class="gallery-emblem" transform="translate(100 120) scale(.65) translate(-100 -132)" fill="none" stroke="var(--gallery-ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">${galleryEmblems[type]}</g>` : ''}
-          ${gallerySwitch(51, layout === 'delay' ? 179 : 192, 'BYPASS')}
-          ${gallerySwitch(149, layout === 'delay' ? 179 : 192, 'MODE')}`;
+            ` : ''}
+          ${layout === 'amp-cab' ? `<g fill="#e1ddd2" stroke="#595650"><rect x="49" y="130" width="28" height="12" rx="2"/><rect x="86" y="130" width="28" height="12" rx="2"/><rect x="123" y="130" width="28" height="12" rx="2"/></g>` : ''}
+          ${interactive ? '' : `<text class="gallery-pedal-name" x="100" y="${layout === 'amp-cab' ? 158 : layout === 'delay' ? 154 : 160}" text-anchor="middle" fill="var(--gallery-ink)" font-size="8" font-weight="800">${effect.name}</text>`}
+          ${layout === 'delay' || (layout === 'reverb' && !interactive) ? `<g class="gallery-emblem" transform="translate(100 120) scale(.65) translate(-100 -132)" fill="none" stroke="var(--gallery-ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">${galleryEmblems[type]}</g>` : ''}
+          ${interactive ? '' : gallerySwitch(51, layout === 'delay' ? 179 : 192, 'BYPASS')}
+          ${interactive ? '' : gallerySwitch(149, layout === 'delay' ? 179 : 192, 'MODE')}`;
         return `<svg viewBox="0 0 200 250" role="img" aria-label="${effect.name} pedal concept" data-layout="${layout}" data-color="${color}" style="--gallery-ink:${ink}">
             <defs><linearGradient id="finish-${type}" x1="0" x2="1" y1="0" y2="1">
               <stop stop-color="#fff" stop-opacity=".28"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".28"/>
@@ -256,9 +259,10 @@ function galleryPedal(type) {
 function setConcept() {
   if (studyPointer) finishStudyPointer({ pointerId: studyPointer.pointer, type: 'pointercancel' });
   const gallery = location.hash === '#gallery' && !window.__JUCE__?.backend;
+  const popup = location.hash === '#popup' && !window.__JUCE__?.backend;
   study = !window.__JUCE__?.backend && ['#board-1', '#board-2', '#board-3'].includes(location.hash) ? location.hash.slice(1) : '';
   concept = 'wood';
-  state = states[study || concept] ??= freshState(study || concept);
+  state = states[popup ? 'popup' : study || concept] ??= freshState(popup ? 'popup' : study || concept);
   $('#visual-view').value = study || 'board-2';
   expandedPedal = null;
   if ($('#study-pedal-dialog').open) $('#study-pedal-dialog').close();
@@ -267,10 +271,12 @@ function setConcept() {
   $('.board-toolbar').prepend($('#wood-tuner'));
   $('#study-tuner-cable').toggleAttribute('hidden', !study);
   $('#pedal-gallery').hidden = !gallery;
-  $('.concept-intro').hidden = gallery;
-  $('.app-shell').hidden = gallery;
-  $('.demo-explainer').hidden = gallery;
+  $('#popup-study').hidden = !popup;
+  $('.concept-intro').hidden = gallery || popup;
+  $('.app-shell').hidden = gallery || popup;
+  $('.demo-explainer').hidden = gallery || popup;
   if (gallery) renderGallery();
+  if (popup) renderPopupExamples();
   document.body.dataset.concept = concept;
   const wood = concept === 'wood';
   setToolbox(wood && state.toolbox);
@@ -298,10 +304,10 @@ function setConcept() {
   $('#board-hint').textContent = design.hint;
   updateDemoPresets();
   document.querySelectorAll('[data-concept-link]').forEach(link => {
-    if (link.dataset.conceptLink === (gallery ? 'gallery' : study || concept)) link.setAttribute('aria-current', 'page');
+    if (link.dataset.conceptLink === (gallery ? 'gallery' : popup ? 'popup' : study || concept)) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');
   });
-  render();
+  if (!popup) render();
 }
 
 function setToolbox(open, restoreFocus = false) {
@@ -353,27 +359,138 @@ function effectColor(type) {
   return galleryAppearance(type).color;
 }
 
-function effectMarkup(pedal, index) {
+function renderPopupExamples() {
+  $('#popup-examples').innerHTML = state.chain.map(pedal => {
+    const effect = effects[pedal.type];
+    return `<button type="button" class="popup-example" data-popup-example="${pedal.id}">
+      <span class="popup-example-art">${galleryPedal(pedal.type)}</span>
+      <span class="popup-example-caption"><strong>${effect.name}</strong><small>${effect.category} / OPEN PEDAL ↗</small></span>
+    </button>`;
+  }).join('') || '<p class="popup-empty">No examples left. Reset the examples to explore them again.</p>';
+  $('#popup-examples').querySelectorAll('svg').forEach(svg => sizeGalleryArt(svg, 145));
+}
+
+function popupParameter(pedal, effect, slot, parameters) {
+  const parameter = pedal.demoAssignments?.[slot] || slot;
+  if (!pedal.demoVst) return `<span class="popup-parameter-label">${slot}</span>`;
+  return `<span class="popup-parameter-wrap"><select class="popup-parameter" data-demo-assign="${slot}"
+    data-effect-id="${pedal.id}" aria-label="Assign ${effect.name} ${slot} parameter">
+    ${parameters.map(name => `<option value="${name}" ${name === parameter ? 'selected' : ''}>${name}</option>`).join('')}
+  </select></span>`;
+}
+
+function popupControls(pedal) {
+  const gallery = galleryControls[pedal.type];
+  if (!gallery) return effects[pedal.type].knobs;
+  return !$('#popup-study').hidden || ['halo', 'spring'].includes(pedal.type)
+    ? gallery : [...new Set([...gallery, ...effects[pedal.type].knobs])];
+}
+
+function popupGalleryEffect(pedal, effect, controls, shape, parameters) {
+  const yOrigin = shape === 'delay' ? 32 : 15;
+  const height = shape === 'delay' ? 188 : 222;
+  const position = (x, y) => `left:${(x + 1) * 100 / 202}%;top:${(y - yOrigin) * 100 / height}%`;
+  const gallerySlots = galleryControls[pedal.type];
+  const usedSlots = controls.map(knob => gallerySlots.indexOf(knob)).filter(index => index >= 0);
+  const dials = controls.map(knob => {
+    let index = gallerySlots.indexOf(knob);
+    if (index < 0) {
+      index = 0;
+      while (usedSlots.includes(index)) index++;
+      usedSlots.push(index);
+    }
+    const x = shape === 'amp-cab' ? (index % 2 ? 161 : 39)
+      : shape === 'reverb' && index >= 4 ? (index === 4 ? 84 : 116) : (index % 2 ? 157 : 43);
+    const y = shape === 'amp-cab' ? (index < 2 ? 82 : 112)
+      : shape === 'reverb' && index >= 4 ? 82 : (shape === 'delay' ? 68 : 67) + Math.floor(index / 2) * (shape === 'delay' ? 32 : 36);
+    const parameter = pedal.demoAssignments?.[knob] || knob;
+    const value = pedal.demoVst ? pedal.demoValues?.[parameter] ?? 50 : pedal.controls?.[knob] ?? 50;
+    return `<div class="popup-art-dial ${shape === 'amp-cab' ? (controls.length <= 2 ? 'popup-art-dial-large' : 'popup-art-dial-compact') : ''}" style="${position(x, y)}">
+      <div class="effect-knob" role="slider" tabindex="0" data-effect-id="${pedal.id}" data-knob="${knob}"
+        aria-label="${effect.name} ${parameter}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${value}"
+        style="--turn:${dialTurn(value, 0, 100)}"></div>
+      <div class="popup-art-label">${popupParameter(pedal, effect, knob, parameters)}</div></div>`;
+  }).join('');
+  const screen = shape === 'delay' ? [71, 66, 58, 29] : shape === 'amp-cab' ? [68, 55, 64, 60] : [70, 107, 60, 32];
+  const switchY = shape === 'delay' ? 179 : 192;
+  const modeParameter = pedal.demoAssignments?.Mode || 'Mode';
+  const modeValue = pedal.demoValues?.[modeParameter] ?? 0;
+  return `<article class="popup-detail popup-gallery popup-shape-${shape}" style="--popup-ink:${galleryAppearance(pedal.type).ink}">
+    <div class="popup-gallery-art">${galleryPedal(pedal.type, true).replaceAll(`finish-${pedal.type}`, `popup-finish-${pedal.id}`)}
+      ${dials}
+      <div class="popup-plugin popup-art-screen" style="left:${(screen[0] + 1) * 100 / 202}%;top:${(screen[1] - yOrigin) * 100 / height}%;width:${screen[2] * 100 / 202}%;height:${screen[3] * 100 / height}%">
+        <strong>${pedal.demoVst || 'No VST selected'}</strong>
+        <div class="popup-plugin-actions">${pedal.demoVst ? `<button type="button" data-demo-vst-editor="${pedal.id}">Open VST</button>` : ''}
+          <button type="button" data-demo-vst-open="${pedal.id}">${pedal.demoVst ? 'Change VST' : 'Choose VST'}</button></div></div>
+      <button type="button" class="popup-remove popup-art-remove" style="${position(100, shape === 'amp-cab' ? 158 : shape === 'delay' ? 154 : 160)}" data-remove-pedal="${pedal.id}">Remove pedal</button>
+      <div class="popup-art-switch" style="${position(51, switchY)}"><span class="popup-art-led ${pedal.active ? 'lit' : ''}" aria-hidden="true"></span>
+        <button type="button" class="popup-footswitch" data-bypass="${pedal.id}" aria-label="${pedal.active ? 'Bypass' : 'Engage'} ${effect.name}" aria-pressed="${pedal.active}"><span></span></button>
+        <span class="popup-art-switch-label">BYPASS</span></div>
+      <div class="popup-art-switch" style="${position(149, switchY)}"><span class="popup-art-led ${modeValue >= 50 && pedal.demoVst ? 'lit' : ''}" aria-hidden="true"></span>
+        <button type="button" class="popup-footswitch" data-demo-mode="${pedal.id}" aria-label="Toggle ${effect.name} ${modeParameter}" aria-pressed="${modeValue >= 50}" ${pedal.demoVst ? '' : 'disabled'}><span></span></button>
+        <span class="popup-art-switch-label">${popupParameter(pedal, effect, 'Mode', parameters)}</span></div>
+    </div></article>`;
+}
+
+function popupEffectMarkup(pedal) {
   const effect = effects[pedal.type];
-  const side = index < state.chain.findIndex(item => item.type === 'looper') ? 'PRE-LOOP' : 'POST-LOOP';
-  return `<article class="pedal effect ${pedal.active ? '' : 'off'}" data-pedal="${pedal.id}" style="--pedal:${effectColor(pedal.type)};--pedal-ink:${galleryAppearance(pedal.type).ink}">
-    <span class="pedal-jacks" aria-hidden="true"></span>
-    <div class="drag-handle" ${pedalHandle(pedal.id, effect.name)}>
-    <div class="pedal-number"><span>0${index + 1} / ${side}</span><span>DEMO</span></div>
-    <h3 class="pedal-title">${effect.name}</h3><span class="pedal-category">${effect.category}</span></div>
-    ${concept === 'wood' ? `<div class="effect-panel ${pedal.type}"><span>${effect.category}</span><small>STEREO EFFECT / DEMO</small><div class="vst-management"><button data-vst-add="${pedal.id}">ADD VST3</button></div></div>` : ''}
-    <div class="pedal-knobs ${effect.knobs.length === 3 ? 'three-knobs' : ''}">${effect.knobs.map(knob => {
-      const value = pedal.controls?.[knob] ?? 50;
-      return `<div class="knob-group"><span class="knob-label">${knob}</span>
-        <div class="effect-knob" role="slider" tabindex="0" data-effect-id="${pedal.id}" data-knob="${knob}"
-          aria-label="${effect.name} ${knob}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${value}"
-          style="--turn:${dialTurn(value, 0, 100)}"></div></div>`;
-    }).join('')}</div>
-    <div class="effect-status"><span class="led"></span>${pedal.active ? 'ENGAGED' : 'BYPASSED'}</div>
-    ${concept !== 'wood' ? `<button class="editor-button" data-vst-add="${pedal.id}">ADD VST3</button>` : ''}
-    <button class="bypass-button" data-bypass="${pedal.id}" aria-label="${pedal.active ? 'Bypass' : 'Engage'} ${effect.name}" aria-pressed="${pedal.active}"></button>
-    <span class="footswitch-label">${pedal.active ? 'BYPASS' : 'ENGAGE'}</span>
-    ${moveTools(pedal.id, effect.name, index, true)}</article>`;
+  const { color, ink } = galleryAppearance(pedal.type);
+  const controls = popupControls(pedal);
+  const shape = ['halo', 'spring'].includes(pedal.type) ? 'reverb'
+    : effect.category === 'Delay' ? 'delay' : effect.category === 'Amp & Cab' ? 'amp-cab' : 'stompbox';
+  const width = shape !== 'stompbox' ? 540 : controls.length > 4 ? 390
+    : ['eq', 'harmonizer'].includes(pedal.type) ? 350 : controls.length > 3 ? 310 : pedal.type === 'boost' ? 250 : 280;
+  const parameters = [...new Set([...controls, ...($('#popup-study').hidden ? effect.knobs : []), ...(shape !== 'stompbox' ? ['Mode'] : []), ...(demoVstParameters[pedal.demoVst] || [])])];
+  return shape !== 'stompbox' ? popupGalleryEffect(pedal, effect, controls, shape, parameters) : `<article class="popup-detail popup-shape-${shape}" style="--popup-color:${color};--popup-ink:${ink};--popup-width:${width}px">
+    <span class="popup-jack popup-jack-left" aria-hidden="true"></span><span class="popup-jack popup-jack-right" aria-hidden="true"></span>
+    <div class="popup-face"><span class="popup-screw popup-screw-left" aria-hidden="true"></span><span class="popup-screw popup-screw-right" aria-hidden="true"></span>
+      <header class="popup-pedal-header">${shape === 'stompbox' ? `<span>LOOPER / ${effect.category.toUpperCase()}</span>` : ''}<h2>${effect.name}</h2></header>
+      <div class="popup-dials ${controls.length > 4 ? 'popup-dials-wide' : ''} ${controls.length === 3 ? 'popup-dials-three' : ''}">${controls.map((knob, index) => {
+        const parameter = pedal.demoAssignments?.[knob] || knob;
+        const value = pedal.demoVst ? pedal.demoValues?.[parameter] ?? 50 : pedal.controls?.[knob] ?? 50;
+        return `<div class="popup-dial popup-dial-${index + 1}"><div class="effect-knob" role="slider" tabindex="0"
+          data-effect-id="${pedal.id}" data-knob="${knob}" aria-label="${effect.name} ${parameter}" aria-valuemin="0"
+          aria-valuemax="100" aria-valuenow="${value}" style="--turn:${dialTurn(value, 0, 100)}"></div>
+          ${popupParameter(pedal, effect, knob, parameters)}</div>`;
+      }).join('')}</div>
+      <div class="popup-plugin"><span class="popup-plugin-label">VST3 / DEMO</span><strong>${pedal.demoVst || 'No VST selected'}</strong>
+        <div class="popup-plugin-actions">${pedal.demoVst ? `<button type="button" data-demo-vst-editor="${pedal.id}">Open VST</button>` : ''}
+          <button type="button" data-demo-vst-open="${pedal.id}">${pedal.demoVst ? 'Change VST' : 'Choose VST'}</button></div></div>
+      <button type="button" class="popup-remove" data-remove-pedal="${pedal.id}">Remove pedal</button>
+      <span class="popup-led ${pedal.active ? 'lit' : ''}" aria-hidden="true"></span>
+      <button type="button" class="popup-footswitch" data-bypass="${pedal.id}" aria-label="${pedal.active ? 'Bypass' : 'Engage'} ${effect.name}" aria-pressed="${pedal.active}"><span></span></button>
+      <span class="popup-footswitch-label">${pedal.active ? 'ENGAGED' : 'BYPASSED'}</span>
+    </div></article>`;
+}
+
+function renderExpandedEffect(pedal) {
+  $('#study-expanded-pedal').innerHTML = popupEffectMarkup(pedal);
+  const svg = $('#study-expanded-pedal .popup-gallery-art svg');
+  if (svg) sizeGalleryArt(svg, 600);
+  const effect = effects[pedal.type];
+  $('#study-pedal-dialog').setAttribute('aria-label', `${effect.name} controls`);
+  $('#study-pedal-dialog').classList.add('gallery-popup');
+}
+
+const demoVstParameters = {
+  'Example Chorus': ['Rate', 'Depth', 'Mix', 'Stereo Width'],
+  'Example Delay': ['Time', 'Feedback', 'Mix', 'Filter'],
+  'Example Reverb': ['Decay', 'Size', 'Mix', 'Pre-delay']
+};
+const demoVsts = Object.keys(demoVstParameters);
+function renderDemoVsts() {
+  const query = $('#demo-vst-search').value.trim().toLowerCase();
+  const matches = demoVsts.filter(name => name.toLowerCase().includes(query));
+  $('#demo-vst-list').innerHTML = matches.map(name => `<button type="button" class="demo-vst-choice" data-demo-vst-select="${name}"><span><strong>${name}</strong><small>EXAMPLE / NOT INSTALLED</small></span><span aria-hidden="true">↗</span></button>`).join('')
+    || '<p class="popup-empty">No matching example effects.</p>';
+}
+
+function effectMarkup(pedal) {
+  const effect = effects[pedal.type];
+  return `<div class="board-pedal" data-pedal="${pedal.id}">
+    <div class="drag-handle board-pedal-handle" ${pedalHandle(pedal.id, effect.name)}>↔ MOVE</div>
+    ${popupEffectMarkup(pedal)}
+  </div>`;
 }
 
 function addEffect(type, slot = state.chain.findIndex(pedal => pedal.type === 'looper') + 1) {
@@ -388,12 +505,31 @@ function addEffect(type, slot = state.chain.findIndex(pedal => pedal.type === 'l
 
 function updateEffectKnob(pedalId, knob, value, element) {
   const pedal = state.chain.find(item => item.id === pedalId);
-  if (!pedal || !effects[pedal.type].knobs.includes(knob)) return;
+  if (!pedal) return;
+  const controls = element.closest('.popup-detail') ? popupControls(pedal) : effects[pedal.type].knobs;
+  if (!controls.includes(knob)) return;
   const adjusted = Math.max(0, Math.min(100, value));
   pedal.controls ??= {};
   pedal.controls[knob] = adjusted;
   element.setAttribute('aria-valuenow', adjusted);
   element.style.setProperty('--turn', dialTurn(adjusted, 0, 100));
+  if (pedal.demoVst && element.closest('.popup-detail')) {
+    const parameter = pedal.demoAssignments?.[knob] || knob;
+    pedal.demoValues ??= {};
+    pedal.demoValues[parameter] = adjusted;
+    element.closest('.popup-detail').querySelectorAll('.effect-knob').forEach(control => {
+      const slot = control.dataset.knob;
+      if ((pedal.demoAssignments?.[slot] || slot) !== parameter) return;
+      pedal.controls[slot] = adjusted;
+      control.setAttribute('aria-valuenow', adjusted);
+      control.style.setProperty('--turn', dialTurn(adjusted, 0, 100));
+    });
+    const mode = element.closest('.popup-detail').querySelector('[data-demo-mode]');
+    if (mode && (pedal.demoAssignments?.Mode || 'Mode') === parameter) {
+      mode.setAttribute('aria-pressed', adjusted >= 50);
+      mode.parentElement.querySelector('.popup-art-led').classList.toggle('lit', adjusted >= 50);
+    }
+  }
 }
 
 function dialText(name, value) {
@@ -630,7 +766,11 @@ function renderStudyBoard() {
   if (expandedPedal) {
     const index = state.chain.findIndex(pedal => pedal.id === expandedPedal);
     if (index < 0) { expandedPedal = null; $('#study-pedal-dialog').close(); }
-    else $('#study-expanded-pedal').innerHTML = state.chain[index].type === 'looper' ? looperMarkup(index) : effectMarkup(state.chain[index], index);
+    else if (state.chain[index].type === 'looper') {
+      $('#study-pedal-dialog').classList.remove('gallery-popup');
+      $('#study-pedal-dialog').setAttribute('aria-label', 'Loop Deck controls');
+      $('#study-expanded-pedal').innerHTML = looperMarkup(index);
+    } else renderExpandedEffect(state.chain[index]);
   }
 }
 
@@ -718,8 +858,9 @@ function render() {
     const loopIndex = state.chain.findIndex(pedal => pedal.type === 'looper');
     $('#pedals').innerHTML = state.chain.map((pedal, index) => {
       if (study === 'board-3' && (studyPage === 'pre' ? index >= loopIndex : studyPage === 'post' ? index <= loopIndex : index !== loopIndex)) return '';
-      return pedal.type === 'looper' ? looperMarkup(index) : effectMarkup(pedal, index);
+      return pedal.type === 'looper' ? looperMarkup(index) : effectMarkup(pedal);
     }).join('');
+    $('#pedals').querySelectorAll('.popup-gallery-art svg').forEach(svg => sizeGalleryArt(svg, 600));
   }
   $('#chain-order').innerHTML = state.chain.map(pedal => `<span class="${pedal.type === 'looper' ? 'loop-order' : ''}">${pedal.type === 'looper' ? 'LOOPER' : effects[pedal.type].name}</span>`).join('');
   if (concept === 'wood') {
@@ -761,7 +902,7 @@ function positionPedals() {
     const stage = concept === 'stage';
     const wood = concept === 'wood';
     if (wood) {
-      board.style.minWidth = `max(100%, calc(${state.chain.length} * var(--pedal-width) + ${(state.chain.length - 1) * 22 + 80}px))`;
+      board.style.minWidth = '100%';
       return;
     }
     const width = state.chain.reduce((total, pedal) => total + (pedal.type === 'looper'
@@ -843,7 +984,8 @@ function drawCables() {
     return;
   }
   if (study) { drawStudyCables(); return; }
-  const pedals = state.chain.map(pedal => document.querySelector(`[data-pedal="${pedal.id}"]`)).filter(Boolean);
+  const pedals = state.chain.map(pedal => document.querySelector(`[data-pedal="${pedal.id}"]`))
+    .filter(Boolean).map(pedal => pedal.querySelector('.popup-detail') || pedal);
   renderPatchCables($('#board'), $('#cables'), pedals);
 }
 
@@ -885,8 +1027,52 @@ document.addEventListener('click', event => {
     expandedPedal = data.studyExpand;
     render();
     $('#study-pedal-dialog').showModal();
+  } else if (data.popupExample) {
+    expandedPedal = data.popupExample;
+    renderExpandedEffect(state.chain.find(pedal => pedal.id === expandedPedal));
+    $('#study-pedal-dialog').showModal();
   } else if (data.studyClose !== undefined) {
     $('#study-pedal-dialog').close();
+  } else if (button.id === 'reset-popup-study') {
+    state = states.popup = freshState('popup');
+    renderPopupExamples();
+    notify('Pedal examples reset.');
+  } else if (data.demoVstOpen || data.vstAdd !== undefined) {
+    demoVstTarget = data.demoVstOpen || data.vstAdd;
+    $('#demo-vst-search').value = '';
+    renderDemoVsts();
+    $('#demo-vst-dialog').showModal();
+    $('#demo-vst-search').focus();
+  } else if (data.demoVstClose !== undefined) {
+    $('#demo-vst-dialog').close();
+  } else if (data.demoVstEditor) {
+    const pedal = state.chain.find(item => item.id === data.demoVstEditor);
+    if (pedal?.demoVst) {
+      $('#demo-vst-editor-title').textContent = pedal.demoVst;
+      $('#demo-vst-editor').showModal();
+    }
+  } else if (data.demoVstEditorClose !== undefined) {
+    $('#demo-vst-editor').close();
+  } else if (data.demoMode) {
+    const pedal = state.chain.find(item => item.id === data.demoMode);
+    if (pedal?.demoVst) {
+      const parameter = pedal.demoAssignments?.Mode || 'Mode';
+      pedal.demoValues ??= {};
+      pedal.demoValues[parameter] = (pedal.demoValues[parameter] ?? 0) >= 50 ? 0 : 100;
+      if (expandedPedal === pedal.id) renderExpandedEffect(pedal);
+      else render();
+      document.querySelector(`[data-demo-mode="${pedal.id}"]`)?.focus();
+    }
+  } else if (data.demoVstSelect) {
+    const pedal = state.chain.find(item => item.id === demoVstTarget);
+    if (pedal && pedal.demoVst !== data.demoVstSelect) {
+      pedal.demoVst = data.demoVstSelect;
+      pedal.demoAssignments = {};
+      pedal.demoValues = { ...pedal.controls };
+    }
+    $('#demo-vst-dialog').close();
+    if (pedal && expandedPedal === pedal.id) renderExpandedEffect(pedal);
+    else if (pedal) render();
   } else if (data.category) {
     state.effectCategory = state.effectCategory === data.category ? '' : data.category;
     renderLibrary();
@@ -896,9 +1082,11 @@ document.addEventListener('click', event => {
   } else if (data.addType) {
     addEffect(data.addType, study === 'board-3' && studyPage === 'pre' ? state.chain.findIndex(pedal => pedal.type === 'looper') : undefined);
   } else if (data.bypass) {
-    const pedal = state.chain.find(item => item.id === data.bypass); pedal.active = !pedal.active; render();
-  } else if (data.vstAdd !== undefined) {
-    notify('This browser preview cannot load VST3s. In the desktop app, add a plugin from this pedal.');
+    const pedal = state.chain.find(item => item.id === data.bypass);
+    pedal.active = !pedal.active;
+    if (!$('#popup-study').hidden) renderExpandedEffect(pedal);
+    else render();
+    document.querySelector(`[data-bypass="${pedal.id}"]`)?.focus();
   }
   else if (data.move) {
     const index = state.chain.findIndex(pedal => pedal.id === data.move);
@@ -906,11 +1094,19 @@ document.addEventListener('click', event => {
     [state.chain[index], state.chain[next]] = [state.chain[next], state.chain[index]];
     render(); notify('Demo signal order changed. In the real app, pre-loop effects become part of the recorded take.');
   } else if (data.removePedal) {
+    const popup = !$('#popup-study').hidden;
     const index = [...$('#pedals').querySelectorAll('[data-study-expand]')]
       .findIndex(edit => edit.dataset.studyExpand === data.removePedal);
     state.chain = state.chain.filter(pedal => pedal.id !== data.removePedal);
-    render();
-    if (study) {
+    if (popup) {
+      $('#study-pedal-dialog').close();
+      renderPopupExamples();
+      $('#reset-popup-study').focus();
+      notify('Example pedal removed.');
+    } else {
+      render();
+    }
+    if (study && !popup) {
       const edits = [...$('#pedals').querySelectorAll('[data-study-expand]')];
       (edits[Math.min(index, edits.length - 1)] ?? (study === 'board-3'
         ? $('[data-study-page][aria-pressed="true"]') : $('#wood-toolbox')))?.focus();
@@ -1191,6 +1387,22 @@ $('#board').addEventListener('drop', event => {
 document.addEventListener('change', event => {
   if (document.documentElement.classList.contains('juce-hosted')) return;
   const input = event.target;
+  if (input.dataset.demoAssign) {
+    const pedal = state.chain.find(item => item.id === input.dataset.effectId);
+    if (!pedal || !pedal.demoVst) return;
+    pedal.demoAssignments ??= {};
+    pedal.demoAssignments[input.dataset.demoAssign] = input.value;
+    if (input.dataset.demoAssign === 'Mode') {
+      if (expandedPedal === pedal.id) renderExpandedEffect(pedal);
+      else render();
+      document.querySelector(`[data-demo-assign="Mode"][data-effect-id="${pedal.id}"]`)?.focus();
+      return;
+    }
+    const dial = input.closest('.popup-dial, .popup-art-dial').querySelector('.effect-knob');
+    dial.setAttribute('aria-label', `${effects[pedal.type].name} ${input.value}`);
+    updateEffectKnob(pedal.id, input.dataset.demoAssign, pedal.demoValues?.[input.value] ?? 50, dial);
+    return;
+  }
   if (input.id === 'visual-view' && ['board-1', 'board-2', 'board-3'].includes(input.value)) {
     location.hash = input.value;
     return;
@@ -1275,7 +1487,16 @@ $('#study-pedal-dialog').addEventListener('close', () => {
   const id = expandedPedal;
   expandedPedal = null;
   $('#study-expanded-pedal').innerHTML = '';
+  $('#study-pedal-dialog').classList.remove('gallery-popup');
   if (id && study) $(`[data-study-expand="${id}"]`)?.focus();
+  else if (id && !$('#popup-study').hidden) $(`[data-popup-example="${id}"]`)?.focus();
+});
+$('#demo-vst-search').addEventListener('input', renderDemoVsts);
+$('#demo-vst-dialog').addEventListener('close', () => {
+  const target = demoVstTarget;
+  demoVstTarget = null;
+  if (expandedPedal === target) $('#study-expanded-pedal [data-demo-vst-open]')?.focus();
+  else document.querySelector(`[data-demo-vst-open="${target}"], [data-vst-add="${target}"]`)?.focus();
 });
 function updateStudyDrop(event, pointer = studyPointer) {
   const viewport = $('.board-viewport').getBoundingClientRect();

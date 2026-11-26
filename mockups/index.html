@@ -15,11 +15,21 @@
       <a href="#board-2" data-concept-link="board-2"><span>02 / Moveable deck</span></a>
       <a href="#board-3" data-concept-link="board-3"><span>03 / Three pages</span></a>
       <a href="#gallery" data-concept-link="gallery"><span>Pedal gallery</span></a>
+      <a href="#popup" data-concept-link="popup"><span>Pedal popups</span></a>
     </nav>
     <span class="preview-badge">INTERACTIVE MOCKUPS · NO AUDIO</span>
   </div>
 
   <main>
+    <section id="popup-study" class="popup-study" aria-labelledby="popup-study-title" hidden>
+      <div class="popup-study-intro">
+        <div><span class="eyebrow">DESIGN STUDY / PEDAL DETAILS</span>
+          <h1 id="popup-study-title">Meet your pedals.</h1>
+          <p>Choose a pedal to explore its controls and VST3 panel. Changes here are a visual simulation.</p></div>
+        <button type="button" id="reset-popup-study">Reset examples</button>
+      </div>
+      <div id="popup-examples" class="popup-examples"></div>
+    </section>
     <section id="pedal-gallery" class="pedal-gallery" aria-labelledby="gallery-title" hidden>
       <div class="gallery-intro">
         <div><span class="eyebrow">THE EFFECT COLLECTION / DESIGN STUDIES</span>
@@ -177,6 +187,16 @@
   <dialog id="study-pedal-dialog" aria-label="Expanded pedal">
     <button type="button" class="study-close" data-study-close aria-label="Close expanded pedal">×</button>
     <div id="study-expanded-pedal"></div>
+  </dialog>
+  <dialog id="demo-vst-dialog" aria-labelledby="demo-vst-title">
+    <header class="dialog-header"><div><span class="eyebrow">PLUGIN BROWSER / DEMO</span><h2 id="demo-vst-title">Choose a VST3</h2></div><button type="button" data-demo-vst-close aria-label="Close VST3 browser">✕</button></header>
+    <p class="demo-vst-note">Example effects only. This preview cannot scan or load installed plugins.</p>
+    <label class="demo-vst-search">Search examples<input id="demo-vst-search" type="search" placeholder="Search demo effects"></label>
+    <div id="demo-vst-list"></div>
+  </dialog>
+  <dialog id="demo-vst-editor" aria-labelledby="demo-vst-editor-title">
+    <header class="dialog-header"><div><span class="eyebrow">VST EDITOR / DEMO</span><h2 id="demo-vst-editor-title"></h2></div><button type="button" data-demo-vst-editor-close aria-label="Close demo VST editor">✕</button></header>
+    <p class="demo-vst-note">This is an editor preview. No VST is loaded in the browser.</p>
   </dialog>
   <dialog id="settings-dialog">
     <header class="dialog-header"><div><span class="eyebrow">MAKE IT YOURS</span><h2>Settings</h2></div><button data-close-dialog aria-label="Close settings">✕</button></header>

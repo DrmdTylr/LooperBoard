@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Drmd\LooperVstproject\build\CMakeFiles\8945f4f2252406016e1d9411fe90bfc5\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{5EABE7DC-3C4F-3AF5-A9DA-2373ED71B9BA}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

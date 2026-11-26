@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/Drmd/LooperVstproject/build/_deps/webview2-subbuild/CMakeFiles/webview2-populate"
+		},
+		{
+			"file" : "C:/Users/Drmd/LooperVstproject/build/_deps/webview2-subbuild/CMakeFiles/72026678681f26969f0fe2a00727c547/webview2-populate.rule"
+		},
+		{
+			"file" : "C:/Users/Drmd/LooperVstproject/build/_deps/webview2-subbuild/CMakeFiles/d516505768db3afb6b4142ed96190c4a/webview2-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/Drmd/LooperVstproject/build/_deps/webview2-subbuild/CMakeFiles/d2568bfecf60afd2fa528711d3f4e83f/webview2-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/Drmd/LooperVstproject/build/_deps/webview2-subbuild/CMakeFiles/d2568bfecf60afd2fa528711d3f4e83f/webview2-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/Drmd/LooperVstproject/build/_deps/webview2-subbuild/CMakeFiles/d2568bfecf60afd2fa528711d3f4e83f/webview2-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/Drmd/LooperVstproject/build/_deps/webview2-subbuild/CMakeFiles/d2568bfecf60afd2fa528711d3f4e83f/webview2-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/Drmd/LooperVstproject/build/_deps/webview2-subbuild/CMakeFiles/d2568bfecf60afd2fa528711d3f4e83f/webview2-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/Drmd/LooperVstproject/build/_deps/webview2-subbuild/CMakeFiles/d2568bfecf60afd2fa528711d3f4e83f/webview2-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/Drmd/LooperVstproject/build/_deps/webview2-subbuild/CMakeFiles/d2568bfecf60afd2fa528711d3f4e83f/webview2-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/Drmd/LooperVstproject/build/_deps/webview2-subbuild/CMakeFiles/d2568bfecf60afd2fa528711d3f4e83f/webview2-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"webview2-populate"
+		],
+		"name" : "webview2-populate"
+	}
+}

@@ -1,0 +1,1 @@
+C:\Users\Drmd\LooperVstproject\build\LoopAudioFileTests_rc_lib.dir\Release\LoopAudioFileTests_rc_lib.lib

@@ -1,0 +1,8 @@
+================================================================================
+Linker Errors
+Generated: 2026-11-24T15:26:01.178Z
+Total Errors: 1
+================================================================================
+
+[LNK1104] (MSVC)
+cannot open file 'C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\Release\Looper.exe' [C:\Users\Drmd\LooperVstproject\build\Looper.vcxproj]

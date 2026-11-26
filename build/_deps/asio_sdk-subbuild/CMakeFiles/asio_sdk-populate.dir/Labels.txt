@@ -1,0 +1,14 @@
+# Target labels
+ asio_sdk-populate
+# Source files and their labels
+C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/CMakeFiles/asio_sdk-populate
+C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/CMakeFiles/ca63497aa464c32b252a865b3e3cc533/asio_sdk-populate.rule
+C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/CMakeFiles/fe076099d681d112acc46ef2a72b4685/asio_sdk-populate-complete.rule
+C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/CMakeFiles/a1e3b585f40b8c98ab66abaeb620f39a/asio_sdk-populate-build.rule
+C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/CMakeFiles/a1e3b585f40b8c98ab66abaeb620f39a/asio_sdk-populate-configure.rule
+C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/CMakeFiles/a1e3b585f40b8c98ab66abaeb620f39a/asio_sdk-populate-download.rule
+C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/CMakeFiles/a1e3b585f40b8c98ab66abaeb620f39a/asio_sdk-populate-install.rule
+C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/CMakeFiles/a1e3b585f40b8c98ab66abaeb620f39a/asio_sdk-populate-mkdir.rule
+C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/CMakeFiles/a1e3b585f40b8c98ab66abaeb620f39a/asio_sdk-populate-patch.rule
+C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/CMakeFiles/a1e3b585f40b8c98ab66abaeb620f39a/asio_sdk-populate-test.rule
+C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/CMakeFiles/a1e3b585f40b8c98ab66abaeb620f39a/asio_sdk-populate-update.rule

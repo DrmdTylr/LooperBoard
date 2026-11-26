@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Solution>
+	<Configurations>
+		<BuildType Name="Debug"/>
+		<BuildType Name="Release"/>
+		<BuildType Name="MinSizeRel"/>
+		<BuildType Name="RelWithDebInfo"/>
+		<Platform Name="x64"/>
+	</Configurations>
+	<Project Path="AudioDeviceTests.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="de56348e-8f18-3807-adb6-3bbc3f29b3e0">
+		<BuildDependency Project="AudioDeviceTests_rc_lib.vcxproj"/>
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="AudioDeviceTests_rc_lib.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="393f1ad4-19a8-3f9e-8109-5814ecf40f48">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="LoopAudioFileTests.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="24c05d66-b9e8-3226-8236-0fa2fbf6d8f4">
+		<BuildDependency Project="LoopAudioFileTests_rc_lib.vcxproj"/>
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="LoopAudioFileTests_rc_lib.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="af409463-14ca-3698-86d5-281d39ce026c">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="Looper.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="86488dc5-b00e-320f-994a-24fa7b44fbc5">
+		<BuildDependency Project="LooperWebAssets.vcxproj"/>
+		<BuildDependency Project="Looper_rc_lib.vcxproj"/>
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="LooperTests.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="1a640ef0-6b71-38d0-9e35-1d4c231b2ccd">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="LooperWebAssets.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="93e6d72c-7fb3-3b15-b933-457e3757b961">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="Looper_rc_lib.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="b5af87e0-5f86-3cfa-9bb7-7b9e4094650d">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Folder Name="/CMakePredefinedTargets/">
+		<Project Path="ALL_BUILD.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="296452a5-f2c7-3c71-8075-1bdde3c09d63" DefaultStartup="true">
+			<BuildDependency Project="AudioDeviceTests.vcxproj"/>
+			<BuildDependency Project="AudioDeviceTests_rc_lib.vcxproj"/>
+			<BuildDependency Project="LoopAudioFileTests.vcxproj"/>
+			<BuildDependency Project="LoopAudioFileTests_rc_lib.vcxproj"/>
+			<BuildDependency Project="Looper.vcxproj"/>
+			<BuildDependency Project="LooperTests.vcxproj"/>
+			<BuildDependency Project="LooperWebAssets.vcxproj"/>
+			<BuildDependency Project="Looper_rc_lib.vcxproj"/>
+			<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		</Project>
+		<Project Path="INSTALL.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="cf66cf1d-1194-37d2-bee4-8027c14ea6d2">
+			<BuildDependency Project="ALL_BUILD.vcxproj"/>
+			<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+			<Build Solution="Debug|*" Project="false"/>
+			<Build Solution="Release|*" Project="false"/>
+			<Build Solution="MinSizeRel|*" Project="false"/>
+			<Build Solution="RelWithDebInfo|*" Project="false"/>
+		</Project>
+		<Project Path="RUN_TESTS.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="2299e70e-496c-3e96-9272-2415eca4e46b">
+			<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+			<Build Solution="Debug|*" Project="false"/>
+			<Build Solution="Release|*" Project="false"/>
+			<Build Solution="MinSizeRel|*" Project="false"/>
+			<Build Solution="RelWithDebInfo|*" Project="false"/>
+		</Project>
+		<Project Path="ZERO_CHECK.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="81cf6329-2b76-35aa-b0b6-bfd7b1c6c2aa"/>
+	</Folder>
+</Solution>

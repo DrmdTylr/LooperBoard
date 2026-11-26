@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Drmd\LooperVstproject\build\_deps\webview2-subbuild\CMakeFiles\d2568bfecf60afd2fa528711d3f4e83f\webview2-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Drmd\LooperVstproject\build\_deps\webview2-subbuild\CMakeFiles\d2568bfecf60afd2fa528711d3f4e83f\webview2-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Drmd\LooperVstproject\build\_deps\webview2-subbuild\CMakeFiles\d2568bfecf60afd2fa528711d3f4e83f\webview2-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Drmd\LooperVstproject\build\_deps\webview2-subbuild\CMakeFiles\d2568bfecf60afd2fa528711d3f4e83f\webview2-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Drmd\LooperVstproject\build\_deps\webview2-subbuild\CMakeFiles\d2568bfecf60afd2fa528711d3f4e83f\webview2-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Drmd\LooperVstproject\build\_deps\webview2-subbuild\CMakeFiles\d2568bfecf60afd2fa528711d3f4e83f\webview2-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Drmd\LooperVstproject\build\_deps\webview2-subbuild\CMakeFiles\d2568bfecf60afd2fa528711d3f4e83f\webview2-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Drmd\LooperVstproject\build\_deps\webview2-subbuild\CMakeFiles\d2568bfecf60afd2fa528711d3f4e83f\webview2-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Drmd\LooperVstproject\build\_deps\webview2-subbuild\CMakeFiles\d516505768db3afb6b4142ed96190c4a\webview2-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Drmd\LooperVstproject\build\_deps\webview2-subbuild\CMakeFiles\72026678681f26969f0fe2a00727c547\webview2-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\Drmd\LooperVstproject\build\_deps\webview2-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\Drmd\LooperVstproject\build\_deps\webview2-subbuild\CMakeFiles\webview2-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{6F895D8E-0DF3-34E9-B898-914677185E60}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

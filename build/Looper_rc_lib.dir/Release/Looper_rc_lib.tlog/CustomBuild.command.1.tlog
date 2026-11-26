@@ -1,0 +1,20 @@
+^C:\USERS\DRMD\LOOPERVSTPROJECT\BUILD\CMAKEFILES\C318F201B9CE6DB9C0CE83634A047119\LOOPER_RESOURCES.RC.RULE
+setlocal
+_deps\juce-build\tools\extras\Build\juceaide\juceaide_artefacts\Custom\juceaide.exe rcfile C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/JuceLibraryCode/Info.txt C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/JuceLibraryCode/Looper_resources.rc
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DRMD\LOOPERVSTPROJECT\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/Drmd/LooperVstproject -BC:/Users/Drmd/LooperVstproject/build --check-stamp-file C:/Users/Drmd/LooperVstproject/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,3 @@
+C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/CMakeFiles/asio_sdk-populate.dir
+C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/CMakeFiles/ALL_BUILD.dir
+C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/CMakeFiles/ZERO_CHECK.dir

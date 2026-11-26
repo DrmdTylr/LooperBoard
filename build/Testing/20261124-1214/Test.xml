@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20261124-1214-Experimental"
+	Name="(empty)"
+	Generator="ctest-4.3.1-msvc1"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="Windows"
+	Hostname="12600k-3070Ti"
+	OSRelease="10.0.19045"
+	OSVersion="Windows 10"
+	OSPlatform="AMD64"
+	Is64Bits="1"
+	VendorString="GenuineIntel"
+	VendorID="Intel Corporation"
+	FamilyID="6"
+	ModelID="7"
+	ModelName=""
+	ProcessorCacheSize="-1"
+	NumberOfLogicalCPU="16"
+	NumberOfPhysicalCPU="10"
+	TotalVirtualMemory="30916"
+	TotalPhysicalMemory="16225"
+	LogicalProcessorsPerPhysical="1"
+	ProcessorClockFrequency="3686.000000"
+	>
+	<Testing>
+		<StartDateTime>Nov 26 10:02 GMT Standard Time</StartDateTime>
+		<StartTestTime>1795687358</StartTestTime>
+		<TestList/>
+		<EndDateTime>Nov 26 10:02 GMT Standard Time</EndDateTime>
+		<EndTestTime>1795687359</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

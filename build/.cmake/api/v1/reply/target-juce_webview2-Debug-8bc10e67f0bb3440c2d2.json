@@ -1,0 +1,89 @@
+{
+	"abstract" : true,
+	"backtrace" : 6,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"find_package",
+			"_juce_link_optional_libraries",
+			"_juce_initialise_target",
+			"juce_add_gui_app",
+			"target_link_libraries"
+		],
+		"files" : 
+		[
+			"build/_deps/juce-src/extras/Build/CMake/FindWebView2.cmake",
+			"build/_deps/juce-src/extras/Build/CMake/JUCEUtils.cmake",
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 2
+			},
+			{
+				"command" : 4,
+				"file" : 2,
+				"line" : 33,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 2170,
+				"parent" : 1
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 2119,
+				"parent" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 300,
+				"parent" : 3
+			},
+			{
+				"file" : 0,
+				"parent" : 4
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 89,
+				"parent" : 5
+			},
+			{
+				"command" : 5,
+				"file" : 0,
+				"line" : 92,
+				"parent" : 5
+			}
+		]
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 10
+	},
+	"id" : "juce_webview2::@6890427a1f51a3e7e1df",
+	"interfaceLinkLibraries" : 
+	[
+		{
+			"backtrace" : 7,
+			"fragment" : "C:/Users/Drmd/LooperVstproject/build/webview2/Microsoft.Web.WebView2.1.0.2903.40/build/native/x64/WebView2LoaderStatic.lib"
+		}
+	],
+	"name" : "juce_webview2",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sources" : [],
+	"type" : "INTERFACE_LIBRARY"
+}

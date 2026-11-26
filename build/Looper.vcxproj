@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{86488DC5-B00E-320F-994A-24FA7B44FBC5}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>Looper</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Looper.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Looper</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Looper.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Looper</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Looper.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Looper</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Looper.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Looper</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-src\common;C:\Users\Drmd\LooperVstproject\build\webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\include;C:\Users\Drmd\LooperVstproject\build\juce_binarydata_LooperWebAssets\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\VST3_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lv2;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\serd;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord\src;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sratom;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING="Looper";JUCE_APPLICATION_VERSION_STRING="0.1.0";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;DEBUG=1;_DEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING=\"Looper\";JUCE_APPLICATION_VERSION_STRING=\"0.1.0\";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;DEBUG=1;_DEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-src\common;C:\Users\Drmd\LooperVstproject\build\webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\include;C:\Users\Drmd\LooperVstproject\build\juce_binarydata_LooperWebAssets\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\VST3_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lv2;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\serd;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord\src;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sratom;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-src\common;C:\Users\Drmd\LooperVstproject\build\webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\include;C:\Users\Drmd\LooperVstproject\build\juce_binarydata_LooperWebAssets\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\VST3_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lv2;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\serd;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord\src;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sratom;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>Debug\LooperWebAssets.lib;webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\x64\WebView2LoaderStatic.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_utils/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_utils/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_processors/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_processors/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_gui_extra/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_gui_extra/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_gui_basics/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_gui_basics/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_graphics/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_graphics/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_events/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_events/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_core/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_core/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_data_structures/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_data_structures/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_basics/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_basics/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_formats/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_formats/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_devices/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_devices/libs/VisualStudio2026/x64/MDd/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/Debug/Looper.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/Debug/Looper.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-src\common;C:\Users\Drmd\LooperVstproject\build\webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\include;C:\Users\Drmd\LooperVstproject\build\juce_binarydata_LooperWebAssets\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\VST3_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lv2;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\serd;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord\src;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sratom;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Full</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING="Looper";JUCE_APPLICATION_VERSION_STRING="0.1.0";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;NDEBUG=1;_NDEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING=\"Looper\";JUCE_APPLICATION_VERSION_STRING=\"0.1.0\";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;NDEBUG=1;_NDEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-src\common;C:\Users\Drmd\LooperVstproject\build\webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\include;C:\Users\Drmd\LooperVstproject\build\juce_binarydata_LooperWebAssets\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\VST3_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lv2;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\serd;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord\src;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sratom;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-src\common;C:\Users\Drmd\LooperVstproject\build\webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\include;C:\Users\Drmd\LooperVstproject\build\juce_binarydata_LooperWebAssets\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\VST3_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lv2;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\serd;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord\src;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sratom;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>Release\LooperWebAssets.lib;webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\x64\WebView2LoaderStatic.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_utils/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_utils/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_processors/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_processors/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_gui_extra/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_gui_extra/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_gui_basics/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_gui_basics/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_graphics/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_graphics/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_events/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_events/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_core/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_core/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_data_structures/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_data_structures/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_basics/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_basics/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_formats/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_formats/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_devices/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_devices/libs/VisualStudio2026/x64/MDd/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/Release/Looper.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/Release/Looper.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-src\common;C:\Users\Drmd\LooperVstproject\build\webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\include;C:\Users\Drmd\LooperVstproject\build\juce_binarydata_LooperWebAssets\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\VST3_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lv2;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\serd;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord\src;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sratom;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Full</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING="Looper";JUCE_APPLICATION_VERSION_STRING="0.1.0";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;NDEBUG=1;_NDEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING=\"Looper\";JUCE_APPLICATION_VERSION_STRING=\"0.1.0\";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;NDEBUG=1;_NDEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-src\common;C:\Users\Drmd\LooperVstproject\build\webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\include;C:\Users\Drmd\LooperVstproject\build\juce_binarydata_LooperWebAssets\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\VST3_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lv2;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\serd;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord\src;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sratom;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-src\common;C:\Users\Drmd\LooperVstproject\build\webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\include;C:\Users\Drmd\LooperVstproject\build\juce_binarydata_LooperWebAssets\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\VST3_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lv2;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\serd;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord\src;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sratom;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>MinSizeRel\LooperWebAssets.lib;webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\x64\WebView2LoaderStatic.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_utils/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_utils/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_processors/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_processors/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_gui_extra/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_gui_extra/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_gui_basics/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_gui_basics/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_graphics/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_graphics/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_events/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_events/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_core/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_core/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_data_structures/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_data_structures/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_basics/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_basics/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_formats/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_formats/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_devices/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_devices/libs/VisualStudio2026/x64/MDd/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/MinSizeRel/Looper.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/MinSizeRel/Looper.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-src\common;C:\Users\Drmd\LooperVstproject\build\webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\include;C:\Users\Drmd\LooperVstproject\build\juce_binarydata_LooperWebAssets\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\VST3_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lv2;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\serd;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord\src;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sratom;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Full</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING="Looper";JUCE_APPLICATION_VERSION_STRING="0.1.0";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;NDEBUG=1;_NDEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING=\"Looper\";JUCE_APPLICATION_VERSION_STRING=\"0.1.0\";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;NDEBUG=1;_NDEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-src\common;C:\Users\Drmd\LooperVstproject\build\webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\include;C:\Users\Drmd\LooperVstproject\build\juce_binarydata_LooperWebAssets\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\VST3_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lv2;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\serd;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord\src;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sratom;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-src\common;C:\Users\Drmd\LooperVstproject\build\webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\include;C:\Users\Drmd\LooperVstproject\build\juce_binarydata_LooperWebAssets\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\VST3_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lv2;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\serd;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord\src;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sratom;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>RelWithDebInfo\LooperWebAssets.lib;webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\x64\WebView2LoaderStatic.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_utils/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_utils/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_processors/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_processors/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_gui_extra/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_gui_extra/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_gui_basics/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_gui_basics/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_graphics/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_graphics/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_events/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_events/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_core/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_core/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_data_structures/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_data_structures/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_basics/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_basics/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_formats/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_formats/libs/VisualStudio2026/x64/MDd/$(Configuration);C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_devices/libs/VisualStudio2026/x64/MDd;C:/Users/Drmd/LooperVstproject/build/_deps/juce-src/modules/juce_audio_devices/libs/VisualStudio2026/x64/MDd/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <DataExecutionPrevention></DataExecutionPrevention>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
+      <ImportLibrary>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/RelWithDebInfo/Looper.lib</ImportLibrary>
+      <LinkErrorReporting></LinkErrorReporting>
+      <ProgramDataBaseFile>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/RelWithDebInfo/Looper.pdb</ProgramDataBaseFile>
+      <RandomizedBaseAddress></RandomizedBaseAddress>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Drmd\LooperVstproject\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/Drmd/LooperVstproject/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/Drmd/LooperVstproject -BC:/Users/Drmd/LooperVstproject/build --check-stamp-file C:/Users/Drmd/LooperVstproject/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\ExternalProject\shared_internal_commands.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FetchContent.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FetchContent\CMakeLists.cmake.in;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FindGit.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;C:\Users\Drmd\LooperVstproject\build\CMakeFiles\4.3.1-msvc1\CMakeCXXCompiler.cmake;C:\Users\Drmd\LooperVstproject\build\CMakeFiles\4.3.1-msvc1\CMakeRCCompiler.cmake;C:\Users\Drmd\LooperVstproject\build\CMakeFiles\4.3.1-msvc1\CMakeSystem.cmake;C:\Users\Drmd\LooperVstproject\build\CMakeFiles\cmake.verify_globs;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\extras\Build\CMake\FindWebView2.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Drmd\LooperVstproject\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/Drmd/LooperVstproject/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/Drmd/LooperVstproject -BC:/Users/Drmd/LooperVstproject/build --check-stamp-file C:/Users/Drmd/LooperVstproject/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\ExternalProject\shared_internal_commands.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FetchContent.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FetchContent\CMakeLists.cmake.in;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FindGit.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;C:\Users\Drmd\LooperVstproject\build\CMakeFiles\4.3.1-msvc1\CMakeCXXCompiler.cmake;C:\Users\Drmd\LooperVstproject\build\CMakeFiles\4.3.1-msvc1\CMakeRCCompiler.cmake;C:\Users\Drmd\LooperVstproject\build\CMakeFiles\4.3.1-msvc1\CMakeSystem.cmake;C:\Users\Drmd\LooperVstproject\build\CMakeFiles\cmake.verify_globs;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\extras\Build\CMake\FindWebView2.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Drmd\LooperVstproject\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/Drmd/LooperVstproject/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/Drmd/LooperVstproject -BC:/Users/Drmd/LooperVstproject/build --check-stamp-file C:/Users/Drmd/LooperVstproject/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\ExternalProject\shared_internal_commands.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FetchContent.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FetchContent\CMakeLists.cmake.in;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FindGit.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;C:\Users\Drmd\LooperVstproject\build\CMakeFiles\4.3.1-msvc1\CMakeCXXCompiler.cmake;C:\Users\Drmd\LooperVstproject\build\CMakeFiles\4.3.1-msvc1\CMakeRCCompiler.cmake;C:\Users\Drmd\LooperVstproject\build\CMakeFiles\4.3.1-msvc1\CMakeSystem.cmake;C:\Users\Drmd\LooperVstproject\build\CMakeFiles\cmake.verify_globs;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\extras\Build\CMake\FindWebView2.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Drmd\LooperVstproject\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/Drmd/LooperVstproject/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/Drmd/LooperVstproject -BC:/Users/Drmd/LooperVstproject/build --check-stamp-file C:/Users/Drmd/LooperVstproject/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\ExternalProject\shared_internal_commands.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FetchContent.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FetchContent\CMakeLists.cmake.in;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FindGit.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;C:\Users\Drmd\LooperVstproject\build\CMakeFiles\4.3.1-msvc1\CMakeCXXCompiler.cmake;C:\Users\Drmd\LooperVstproject\build\CMakeFiles\4.3.1-msvc1\CMakeRCCompiler.cmake;C:\Users\Drmd\LooperVstproject\build\CMakeFiles\4.3.1-msvc1\CMakeSystem.cmake;C:\Users\Drmd\LooperVstproject\build\CMakeFiles\cmake.verify_globs;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\extras\Build\CMake\FindWebView2.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Drmd\LooperVstproject\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Drmd\LooperVstproject\src\Main.cpp" />
+    <ClCompile Include="C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_utils\juce_audio_utils.cpp" />
+    <ClCompile Include="C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\juce_audio_processors.cpp" />
+    <ClCompile Include="C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\juce_audio_processors_ara.cpp" />
+    <ClCompile Include="C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\juce_audio_processors_lv2_libs.cpp" />
+    <ClCompile Include="C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_gui_extra\juce_gui_extra.cpp" />
+    <ClCompile Include="C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_gui_basics\juce_gui_basics.cpp" />
+    <ClCompile Include="C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_graphics\juce_graphics.cpp" />
+    <ClCompile Include="C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_graphics\juce_graphics_Harfbuzz.cpp" />
+    <ClCompile Include="C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_graphics\juce_graphics_Sheenbidi.c" />
+    <ClCompile Include="C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_events\juce_events.cpp" />
+    <ClCompile Include="C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_core\juce_core.cpp" />
+    <ClCompile Include="C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_core\juce_core_CompilationTime.cpp" />
+    <ClCompile Include="C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_data_structures\juce_data_structures.cpp" />
+    <ClCompile Include="C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_basics\juce_audio_basics.cpp" />
+    <ClCompile Include="C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_formats\juce_audio_formats.cpp" />
+    <ClCompile Include="C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_devices\juce_audio_devices.cpp" />
+    <Object Include="C:\Users\Drmd\LooperVstproject\build\Looper_rc_lib.dir\$(Configuration)\Looper_resources.res" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\Drmd\LooperVstproject\build\ZERO_CHECK.vcxproj">
+      <Project>{81CF6329-2B76-35AA-B0B6-BFD7B1C6C2AA}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Drmd\LooperVstproject\build\LooperWebAssets.vcxproj">
+      <Project>{93E6D72C-7FB3-3B15-B933-457E3757B961}</Project>
+      <Name>LooperWebAssets</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Drmd\LooperVstproject\build\Looper_rc_lib.vcxproj">
+      <Project>{B5AF87E0-5F86-3CFA-9BB7-7B9E4094650D}</Project>
+      <Name>Looper_rc_lib</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

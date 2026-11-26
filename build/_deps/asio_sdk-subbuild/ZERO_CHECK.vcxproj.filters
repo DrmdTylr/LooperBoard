@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-subbuild\CMakeFiles\ca63497aa464c32b252a865b3e3cc533\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{4A42CFA1-5385-37A2-BFCB-19AEB69770DE}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

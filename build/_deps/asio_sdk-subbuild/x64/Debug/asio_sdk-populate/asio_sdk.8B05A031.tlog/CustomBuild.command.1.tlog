@@ -1,0 +1,150 @@
+^C:\USERS\DRMD\LOOPERVSTPROJECT\BUILD\_DEPS\ASIO_SDK-SUBBUILD\CMAKEFILES\A1E3B585F40B8C98AB66ABAEB620F39A\ASIO_SDK-POPULATE-MKDIR.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/asio_sdk-populate-prefix/tmp/asio_sdk-populate-mkdirs.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/asio_sdk-populate-prefix/src/asio_sdk-populate-stamp/Debug/asio_sdk-populate-mkdir
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DRMD\LOOPERVSTPROJECT\BUILD\_DEPS\ASIO_SDK-SUBBUILD\CMAKEFILES\A1E3B585F40B8C98AB66ABAEB620F39A\ASIO_SDK-POPULATE-DOWNLOAD.RULE
+setlocal
+cd C:\Users\Drmd\LooperVstproject\build\_deps
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/asio_sdk-populate-prefix/tmp/asio_sdk-populate-gitclone.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/asio_sdk-populate-prefix/src/asio_sdk-populate-stamp/Debug/asio_sdk-populate-download
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DRMD\LOOPERVSTPROJECT\BUILD\_DEPS\ASIO_SDK-SUBBUILD\CMAKEFILES\A1E3B585F40B8C98AB66ABAEB620F39A\ASIO_SDK-POPULATE-UPDATE.RULE
+setlocal
+cd C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-src
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -Dcan_fetch=YES -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/asio_sdk-populate-prefix/tmp/asio_sdk-populate-gitupdate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DRMD\LOOPERVSTPROJECT\BUILD\_DEPS\ASIO_SDK-SUBBUILD\CMAKEFILES\A1E3B585F40B8C98AB66ABAEB620F39A\ASIO_SDK-POPULATE-PATCH.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/asio_sdk-populate-prefix/src/asio_sdk-populate-stamp/Debug/asio_sdk-populate-patch
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DRMD\LOOPERVSTPROJECT\BUILD\_DEPS\ASIO_SDK-SUBBUILD\CMAKEFILES\A1E3B585F40B8C98AB66ABAEB620F39A\ASIO_SDK-POPULATE-CONFIGURE.RULE
+setlocal
+cd C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/asio_sdk-populate-prefix/src/asio_sdk-populate-stamp/Debug/asio_sdk-populate-configure
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DRMD\LOOPERVSTPROJECT\BUILD\_DEPS\ASIO_SDK-SUBBUILD\CMAKEFILES\A1E3B585F40B8C98AB66ABAEB620F39A\ASIO_SDK-POPULATE-BUILD.RULE
+setlocal
+cd C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/asio_sdk-populate-prefix/src/asio_sdk-populate-stamp/Debug/asio_sdk-populate-build
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DRMD\LOOPERVSTPROJECT\BUILD\_DEPS\ASIO_SDK-SUBBUILD\CMAKEFILES\A1E3B585F40B8C98AB66ABAEB620F39A\ASIO_SDK-POPULATE-INSTALL.RULE
+setlocal
+cd C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/asio_sdk-populate-prefix/src/asio_sdk-populate-stamp/Debug/asio_sdk-populate-install
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DRMD\LOOPERVSTPROJECT\BUILD\_DEPS\ASIO_SDK-SUBBUILD\CMAKEFILES\A1E3B585F40B8C98AB66ABAEB620F39A\ASIO_SDK-POPULATE-TEST.RULE
+setlocal
+cd C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/asio_sdk-populate-prefix/src/asio_sdk-populate-stamp/Debug/asio_sdk-populate-test
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DRMD\LOOPERVSTPROJECT\BUILD\_DEPS\ASIO_SDK-SUBBUILD\CMAKEFILES\FE076099D681D112ACC46EF2A72B4685\ASIO_SDK-POPULATE-COMPLETE.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E make_directory C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/CMakeFiles/Debug
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/CMakeFiles/Debug/asio_sdk-populate-complete
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E touch C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/asio_sdk-populate-prefix/src/asio_sdk-populate-stamp/Debug/asio_sdk-populate-done
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DRMD\LOOPERVSTPROJECT\BUILD\_DEPS\ASIO_SDK-SUBBUILD\CMAKEFILES\CA63497AA464C32B252A865B3E3CC533\ASIO_SDK-POPULATE.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\DRMD\LOOPERVSTPROJECT\BUILD\_DEPS\ASIO_SDK-SUBBUILD\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SC:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild -BC:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild --check-stamp-file C:/Users/Drmd/LooperVstproject/build/_deps/asio_sdk-subbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,4 +1,4 @@
-LooperTests 31 0.00112645
-AudioDeviceTests 23 0.0157931
-LoopAudioFileTests 15 0.00303742
+LooperTests 32 0.0036985
+AudioDeviceTests 24 0.0197903
+LoopAudioFileTests 16 0.00556134
 ---

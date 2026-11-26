@@ -9,7 +9,7 @@
 namespace BinaryData
 {
     extern const char*   index_html;
-    const int            index_htmlSize = 21423;
+    const int            index_htmlSize = 21443;
 
     extern const char*   styles_css;
     const int            styles_cssSize = 72092;

@@ -30,9 +30,9 @@ if(WIN32)
 endif()
 
 if(WIN32)
-    juce_add_gui_app(Looper PRODUCT_NAME "Looper" NEEDS_WEBVIEW2 TRUE)
+    juce_add_gui_app(Looper PRODUCT_NAME "The Looper Board Archetype" ICON_BIG mockups/assets/app-icon.png NEEDS_WEBVIEW2 TRUE)
 else()
-    juce_add_gui_app(Looper PRODUCT_NAME "Looper")
+    juce_add_gui_app(Looper PRODUCT_NAME "The Looper Board Archetype" ICON_BIG mockups/assets/app-icon.png)
 endif()
     juce_add_binary_data(LooperWebAssets SOURCES
         mockups/index.html

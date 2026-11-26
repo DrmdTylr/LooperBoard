@@ -61,25 +61,25 @@
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Looper.dir\Debug\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Looper</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">The Looper Board Archetype</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Looper.dir\Release\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Looper</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">The Looper Board Archetype</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\MinSizeRel\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Looper.dir\MinSizeRel\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Looper</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">The Looper Board Archetype</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\RelWithDebInfo\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Looper.dir\RelWithDebInfo\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Looper</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">The Looper Board Archetype</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
@@ -108,12 +108,12 @@
       <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING="Looper";JUCE_APPLICATION_VERSION_STRING="0.1.0";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;DEBUG=1;_DEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING="The Looper Board Archetype";JUCE_APPLICATION_VERSION_STRING="0.1.0";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;DEBUG=1;_DEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING=\"Looper\";JUCE_APPLICATION_VERSION_STRING=\"0.1.0\";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;DEBUG=1;_DEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING=\"The Looper Board Archetype\";JUCE_APPLICATION_VERSION_STRING=\"0.1.0\";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;DEBUG=1;_DEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-src\common;C:\Users\Drmd\LooperVstproject\build\webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\include;C:\Users\Drmd\LooperVstproject\build\juce_binarydata_LooperWebAssets\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\VST3_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lv2;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\serd;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord\src;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sratom;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -132,9 +132,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
-      <ImportLibrary>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/Debug/Looper.lib</ImportLibrary>
+      <ImportLibrary>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/Debug/The Looper Board Archetype.lib</ImportLibrary>
       <LinkErrorReporting></LinkErrorReporting>
-      <ProgramDataBaseFile>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/Debug/Looper.pdb</ProgramDataBaseFile>
+      <ProgramDataBaseFile>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/Debug/The Looper Board Archetype.pdb</ProgramDataBaseFile>
       <RandomizedBaseAddress></RandomizedBaseAddress>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -165,14 +165,14 @@
       <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING="Looper";JUCE_APPLICATION_VERSION_STRING="0.1.0";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;NDEBUG=1;_NDEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING="The Looper Board Archetype";JUCE_APPLICATION_VERSION_STRING="0.1.0";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;NDEBUG=1;_NDEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING=\"Looper\";JUCE_APPLICATION_VERSION_STRING=\"0.1.0\";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;NDEBUG=1;_NDEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING=\"The Looper Board Archetype\";JUCE_APPLICATION_VERSION_STRING=\"0.1.0\";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;NDEBUG=1;_NDEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-src\common;C:\Users\Drmd\LooperVstproject\build\webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\include;C:\Users\Drmd\LooperVstproject\build\juce_binarydata_LooperWebAssets\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\VST3_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lv2;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\serd;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord\src;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sratom;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -191,9 +191,9 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
-      <ImportLibrary>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/Release/Looper.lib</ImportLibrary>
+      <ImportLibrary>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/Release/The Looper Board Archetype.lib</ImportLibrary>
       <LinkErrorReporting></LinkErrorReporting>
-      <ProgramDataBaseFile>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/Release/Looper.pdb</ProgramDataBaseFile>
+      <ProgramDataBaseFile>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/Release/The Looper Board Archetype.pdb</ProgramDataBaseFile>
       <RandomizedBaseAddress></RandomizedBaseAddress>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -224,14 +224,14 @@
       <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING="Looper";JUCE_APPLICATION_VERSION_STRING="0.1.0";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;NDEBUG=1;_NDEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING="The Looper Board Archetype";JUCE_APPLICATION_VERSION_STRING="0.1.0";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;NDEBUG=1;_NDEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING=\"Looper\";JUCE_APPLICATION_VERSION_STRING=\"0.1.0\";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;NDEBUG=1;_NDEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING=\"The Looper Board Archetype\";JUCE_APPLICATION_VERSION_STRING=\"0.1.0\";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;NDEBUG=1;_NDEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-src\common;C:\Users\Drmd\LooperVstproject\build\webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\include;C:\Users\Drmd\LooperVstproject\build\juce_binarydata_LooperWebAssets\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\VST3_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lv2;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\serd;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord\src;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sratom;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -250,9 +250,9 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
-      <ImportLibrary>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/MinSizeRel/Looper.lib</ImportLibrary>
+      <ImportLibrary>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/MinSizeRel/The Looper Board Archetype.lib</ImportLibrary>
       <LinkErrorReporting></LinkErrorReporting>
-      <ProgramDataBaseFile>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/MinSizeRel/Looper.pdb</ProgramDataBaseFile>
+      <ProgramDataBaseFile>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/MinSizeRel/The Looper Board Archetype.pdb</ProgramDataBaseFile>
       <RandomizedBaseAddress></RandomizedBaseAddress>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -284,12 +284,12 @@
       <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING="Looper";JUCE_APPLICATION_VERSION_STRING="0.1.0";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;NDEBUG=1;_NDEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING="The Looper Board Archetype";JUCE_APPLICATION_VERSION_STRING="0.1.0";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;NDEBUG=1;_NDEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING=\"Looper\";JUCE_APPLICATION_VERSION_STRING=\"0.1.0\";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;NDEBUG=1;_NDEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;JUCE_STANDALONE_APPLICATION=1;JUCE_ASIO=1;JUCE_USE_WIN_WEBVIEW2_WITH_STATIC_LINKING=1;JUCE_WEB_BROWSER=1;JUCE_USE_CURL=0;JUCE_PLUGINHOST_VST3=1;JUCE_APPLICATION_NAME_STRING=\"The Looper Board Archetype\";JUCE_APPLICATION_VERSION_STRING=\"0.1.0\";JUCE_TARGET_HAS_BINARY_DATA=1;JUCE_MODULE_AVAILABLE_juce_audio_utils=1;JUCE_MODULE_AVAILABLE_juce_audio_processors=1;JUCE_MODULE_AVAILABLE_juce_gui_extra=1;JUCE_MODULE_AVAILABLE_juce_gui_basics=1;JUCE_MODULE_AVAILABLE_juce_graphics=1;JUCE_MODULE_AVAILABLE_juce_events=1;JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1;NDEBUG=1;_NDEBUG=1;JUCE_MODULE_AVAILABLE_juce_core=1;JUCE_MODULE_AVAILABLE_juce_data_structures=1;JUCE_MODULE_AVAILABLE_juce_audio_basics=1;JUCE_MODULE_AVAILABLE_juce_audio_formats=1;JUCE_MODULE_AVAILABLE_juce_audio_devices=1;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\asio_sdk-src\common;C:\Users\Drmd\LooperVstproject\build\webview2\Microsoft.Web.WebView2.1.0.2903.40\build\native\include;C:\Users\Drmd\LooperVstproject\build\juce_binarydata_LooperWebAssets\JuceLibraryCode;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\VST3_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lv2;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\serd;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sord\src;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\sratom;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv;C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\format_types\LV2_SDK\lilv\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -308,9 +308,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
-      <ImportLibrary>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/RelWithDebInfo/Looper.lib</ImportLibrary>
+      <ImportLibrary>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/RelWithDebInfo/The Looper Board Archetype.lib</ImportLibrary>
       <LinkErrorReporting></LinkErrorReporting>
-      <ProgramDataBaseFile>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/RelWithDebInfo/Looper.pdb</ProgramDataBaseFile>
+      <ProgramDataBaseFile>C:/Users/Drmd/LooperVstproject/build/Looper_artefacts/RelWithDebInfo/The Looper Board Archetype.pdb</ProgramDataBaseFile>
       <RandomizedBaseAddress></RandomizedBaseAddress>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -376,6 +376,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <None Include="C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\JuceLibraryCode\icon.ico">
+    </None>
     <ClCompile Include="C:\Users\Drmd\LooperVstproject\src\Main.cpp" />
     <ClCompile Include="C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_utils\juce_audio_utils.cpp" />
     <ClCompile Include="C:\Users\Drmd\LooperVstproject\build\_deps\juce-src\modules\juce_audio_processors\juce_audio_processors.cpp" />

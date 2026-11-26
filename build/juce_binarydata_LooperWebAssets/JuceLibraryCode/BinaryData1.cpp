@@ -16,7 +16,7 @@ static const unsigned char temp_binary_data_0[] =
 "<head>\r\n"
 "  <meta charset=\"utf-8\">\r\n"
 "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n"
-"  <title>Looper / Design lab</title>\r\n"
+"  <title>The Looper Board Archetype / Design lab</title>\r\n"
 "  <link rel=\"stylesheet\" href=\"styles.css\">\r\n"
 "</head>\r\n"
 "<body data-concept=\"wood\">\r\n"
@@ -298,7 +298,7 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 
     switch (hash)
     {
-        case 0x2c834af8:  numBytes = 21423; return index_html;
+        case 0x2c834af8:  numBytes = 21443; return index_html;
         case 0x096a0926:  numBytes = 72092; return styles_css;
         case 0x5c7c8525:  numBytes = 105711; return demo_js;
         case 0xc3e79671:  numBytes = 68937; return native_js;

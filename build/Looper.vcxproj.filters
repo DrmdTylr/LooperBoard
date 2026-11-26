@@ -57,6 +57,9 @@
     <CustomBuild Include="C:\Users\Drmd\LooperVstproject\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="C:\Users\Drmd\LooperVstproject\build\Looper_artefacts\JuceLibraryCode\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
     <Object Include="C:\Users\Drmd\LooperVstproject\build\Looper_rc_lib.dir\$(Configuration)\Looper_resources.res">
       <Filter>Object Libraries</Filter>
     </Object>

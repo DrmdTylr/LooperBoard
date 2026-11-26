@@ -1,10 +1,10 @@
-# Looper
+# The Looper Board Archetype
 
 Vintage Deck is the standalone Windows looper interface. It combines the eight-layer looper, tuner, and board controls with a movable serial chain of VST3 effects. **Settings > Visual** selects Default, Fixed deck, Moveable deck, or Three pages and toggles patch cables. Default is the original full-size board; the chosen view is remembered. The looper timing controls remain in the top toolbar.
 
 ## Run
 
-Open `build\Looper_artefacts\Release\Looper.exe` after building. Connect an audio interface before launch, select its input and output in **Settings > Audio**, start with a low output level, and use headphones. Disable hardware direct monitoring if it doubles the software-monitored signal.
+Open `build\Looper_artefacts\Release\The Looper Board Archetype.exe` after building. Connect an audio interface before launch, select its input and output in **Settings > Audio**, start with a low output level, and use headphones. Disable hardware direct monitoring if it doubles the software-monitored signal.
 
 The Vintage Deck window has a fixed 1500 × 980 size so the complete pedalboard layout remains visible.
 

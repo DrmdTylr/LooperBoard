@@ -530,7 +530,11 @@ class LooperView final : public juce::Component, public juce::DragAndDropContain
             return std::optional<juce::WebBrowserComponent::Resource> { std::move(resource) };
         });
 #if JUCE_WINDOWS
-        options = options.withBackend(juce::WebBrowserComponent::Options::Backend::webview2);
+        // Keep the original WebView2 profile so visual preferences survive the app rename.
+        options = options.withBackend(juce::WebBrowserComponent::Options::Backend::webview2)
+            .withWinWebView2Options(juce::WebBrowserComponent::Options::WinWebView2().withUserDataFolder(
+                juce::File::getSpecialLocation(juce::File::currentExecutableFile)
+                    .getSiblingFile("Looper.exe.WebView2")));
 #endif
 #endif
         return options;
@@ -2807,7 +2811,7 @@ private:
 class MainWindow final : public juce::DocumentWindow
 {
 public:
-    MainWindow() : DocumentWindow("Looper", background, DocumentWindow::closeButton | DocumentWindow::minimiseButton)
+    MainWindow() : DocumentWindow(JUCE_APPLICATION_NAME_STRING, background, DocumentWindow::closeButton | DocumentWindow::minimiseButton)
     {
         setUsingNativeTitleBar(true);
         setContentOwned(new LooperView(), true);
@@ -2822,14 +2826,14 @@ public:
 class LooperApplication final : public juce::JUCEApplication
 {
 public:
-    const juce::String getApplicationName() override { return "Looper"; }
+    const juce::String getApplicationName() override { return JUCE_APPLICATION_NAME_STRING; }
     const juce::String getApplicationVersion() override { return "0.1.0"; }
     void initialise(const juce::String&) override { window = std::make_unique<MainWindow>(); }
     void shutdown() override { window.reset(); }
     void systemRequestedQuit() override
     {
         if (window == nullptr || !window->view()->hasLoop()) { quit(); return; }
-        juce::AlertWindow::showOkCancelBox(juce::MessageBoxIconType::WarningIcon, "Close Looper?",
+        juce::AlertWindow::showOkCancelBox(juce::MessageBoxIconType::WarningIcon, "Close " JUCE_APPLICATION_NAME_STRING "?",
             "Any loop changes since your last project save will be lost.", "Close", "Cancel", nullptr,
             juce::ModalCallbackFunction::create([](int result)
             {

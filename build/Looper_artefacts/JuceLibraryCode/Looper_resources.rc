@@ -16,9 +16,9 @@ BEGIN
     BLOCK "040904E4"
     BEGIN
       VALUE "CompanyName",  "yourcompany\0"
-      VALUE "FileDescription",  "Looper\0"
+      VALUE "FileDescription",  "The Looper Board Archetype\0"
       VALUE "FileVersion",  "0.1.0\0"
-      VALUE "ProductName",  "Looper\0"
+      VALUE "ProductName",  "The Looper Board Archetype\0"
       VALUE "ProductVersion",  "0.1.0\0"
     END
   END
@@ -30,3 +30,6 @@ BEGIN
 END
 
 #endif
+
+IDI_ICON1 ICON DISCARDABLE "icon.ico"
+IDI_ICON2 ICON DISCARDABLE "icon.ico"

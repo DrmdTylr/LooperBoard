@@ -81,6 +81,23 @@ In the Windows app, the default board uses the full pedal faces; the other visua
 
 The first configuration downloads JUCE 8.0.8, a pinned official [ASIO SDK](https://github.com/audiosdk/asio), and the Microsoft WebView2 SDK via CMake. On Windows, the app embeds the Vintage Deck HTML/CSS in WebView2 and bridges its controls to the JUCE audio engine and device settings. This development build uses the ASIO SDK's GPLv3 option, selected by the project owner. Distribution must meet its GPLv3 requirements, including corresponding source; a closed-source release needs an appropriate proprietary license. Review [JUCE licensing](https://juce.com/legal/juce-8-licence/) as well before use or distribution. The downloaded SDK's license text is in `build\_deps\asio_sdk-src\LICENSE.txt`. ASIO is a trademark of Steinberg Media Technologies GmbH.
 
+### Windows installer
+
+The x64 installer installs per user and preserves the WebView profile and saved data on uninstall. It contains the app, dependency notices, and Microsoft's WebView2 bootstrapper, not the mockup or planning folders. If WebView2 is missing, setup needs an internet connection to install it. Audio interface drivers and VST3 plugins must be installed separately.
+
+To build it, install NSIS, then use a separate build directory and the static Visual C++ runtime:
+
+```powershell
+cmake -S . -B release-build -A x64 '-DCMAKE_MSVC_RUNTIME_LIBRARY=MultiThreaded$<$<CONFIG:Debug>:Debug>'
+cmake --build release-build --config Release --target Looper
+Invoke-WebRequest 'https://go.microsoft.com/fwlink/p/?LinkId=2124703' -OutFile MicrosoftEdgeWebview2Setup.exe
+$signature = Get-AuthenticodeSignature .\MicrosoftEdgeWebview2Setup.exe
+if ($signature.Status -ne 'Valid' -or $signature.SignerCertificate.Subject -notmatch 'Microsoft Corporation') { throw 'Invalid WebView2 bootstrapper signature' }
+makensis "/DAPP_EXE=$PWD\release-build\Looper_artefacts\Release\The Looper Board Archetype.exe" "/DWEBVIEW_BOOTSTRAPPER=$PWD\MicrosoftEdgeWebview2Setup.exe" "/DASIO_LICENSE=$PWD\release-build\_deps\asio_sdk-src\LICENSE.txt" "/DJUCE_LICENSE=$PWD\release-build\_deps\juce-src\LICENSE.md" "/DOUTPUT_FILE=$PWD\The-Looper-Board-Archetype-Setup.exe" installer\Looper.nsi
+```
+
+The installer is unsigned and may trigger Windows SmartScreen. Review dependency licensing and the corresponding-source requirements before publishing any release.
+
 ## Pedalboard UI mockups
 
 Open [the design lab](mockups/index.html) in a browser; no server or installation is needed. The top navigation offers:

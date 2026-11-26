@@ -609,25 +609,11 @@ html.juce-hosted .audio-settings fieldset:disabled { opacity: .55; }
 html.juce-hosted .study-pages { margin-left: auto; }
 html.juce-hosted .study-pages button { color: #ead4ac; background: #34271e; border-color: #735138; }
 html.juce-hosted .study-pages button[aria-pressed="true"] { color: #241a12; background: #dfc296; }
-html.juce-hosted[data-visual-view="01"] #pedals {
-  display: grid;
-  width: 100%;
-  min-width: 100%;
-  grid-template-columns: minmax(145px, 1fr) minmax(250px, auto) minmax(145px, 1fr);
-  grid-auto-rows: minmax(260px, auto);
-  align-items: center;
-  justify-content: stretch;
-  gap: 18px 22px;
+html.juce-hosted .study-mini.reordering { z-index: 5; opacity: .9; }
+@media (prefers-reduced-motion: no-preference) {
+  html.juce-hosted[data-visual-view="03"] #pedals > * { animation: page-enter .16s ease-out; }
+  @keyframes page-enter { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 }
-html.juce-hosted[data-visual-view="01"] #pedals > .visual-pre { grid-column: 1; }
-html.juce-hosted[data-visual-view="01"] #pedals > .visual-post { grid-column: 3; }
-html.juce-hosted[data-visual-view="01"] #pedals > .visual-deck {
-  grid-column: 2;
-  grid-row: 1 / span var(--visual-rows, 1);
-  align-self: center;
-}
-html.juce-hosted[data-visual-view="01"] .rail { display: none; }
-html.juce-hosted[data-visual-view="03"] #pedals { min-height: 340px; }
 html.juce-hosted #wood-footer { flex-shrink: 0; }
 html.juce-hosted .tuner[aria-pressed="true"] .tuner-lamps i:nth-child(2) { background: #766654; box-shadow: none; }
 html.juce-hosted .tuner[data-tuning="flat"] .tuner-lamps i:first-child,

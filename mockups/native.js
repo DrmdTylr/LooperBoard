@@ -20,10 +20,13 @@
   const expandedVstFolders = new Set();
   let drag;
   let lastTempoTap = 0;
-  const visualViews = ['01', '02', '03'];
+  const visualViews = ['default', '01', '02', '03'];
   let visualView = visualViews.includes(localStorage.getItem('looper.visualView'))
-    ? localStorage.getItem('looper.visualView') : '02';
-  let visualPage = 'pre';
+    ? localStorage.getItem('looper.visualView') : 'default';
+  let visualPage = 'loop';
+  let expandedPedal = null;
+  let renderVersion = 0;
+  let pendingFocus = null;
   let showCables = localStorage.getItem('looper.showCables') === 'true';
   const footer = {
     input: { min: -24, max: 24, unit: 'dB' },
@@ -148,7 +151,8 @@
 
   function updateVisualSettings() {
     document.documentElement.dataset.visualView = visualView;
-    document.querySelector('#visual-view').value = `board-${Number(visualView)}`;
+    document.body.dataset.study = visualView === 'default' ? '' : `board-${Number(visualView)}`;
+    document.querySelector('#visual-view').value = visualView === 'default' ? 'default' : `board-${Number(visualView)}`;
     const cables = document.querySelector('#demo-cables-toggle');
     cables.setAttribute('aria-pressed', showCables);
     cables.textContent = showCables ? 'Hide cables' : 'Show cables';
@@ -388,7 +392,7 @@
       const deckControls = Object.entries(state.levels).map(([name, value]) =>
         `<div class="deck-control"><span>${name.toUpperCase()}</span>${dial(name, value, { min: 0, max: 100 }, `Deck ${name} level`)}<span class="level-value">${value}%</span></div>`
       ).join('');
-      const moveHandle = visualView === '02' ? 'data-drag="looper"' : '';
+      const moveHandle = visualView === 'default' || visualView === '02' ? 'data-drag="looper"' : '';
       return `<article class="pedal looper visual-deck ${state.recording ? 'recording' : ''} ${state.playing ? '' : 'is-stopped'}" data-pedal="looper">
         <i class="case-corner top-left"></i><i class="case-corner top-right"></i><i class="case-corner bottom-left"></i><i class="case-corner bottom-right"></i>
         <div class="drag-handle" ${moveHandle} tabindex="0"><div class="pedal-number"><span>0${index + 1} / LOOP ENGINE</span><span>STEREO</span></div><h3 class="pedal-title">Loop Deck</h3></div>
@@ -435,30 +439,95 @@
     </article>`;
   }
 
+  function compactPedal(item) {
+    const isLooper = item.type === 'looper';
+    const name = isLooper ? 'Loop Deck' : item.name;
+    const artworkType = effects[item.template] ? item.template : 'boost';
+    let art = isLooper
+      ? document.querySelector('.gallery-looper').outerHTML.replaceAll('looper-finish', 'study-looper-finish').replaceAll('looper-metal', 'study-looper-metal')
+      : galleryPedal(artworkType).replaceAll(`finish-${artworkType}`, `study-finish-${item.id}`);
+    if (!isLooper && artworkType !== item.template)
+      art = art.replace(/(<text class="gallery-pedal-name"[^>]*>).*?(<\/text>)/,
+        `$1${escapeHtml(item.pluginName || item.name)}$2`);
+    art = art.replace('<svg ', '<svg aria-hidden="true" ');
+    return `<div class="study-mini-wrap" data-study-card="${escapeHtml(item.id)}">
+      <div class="study-mini" data-pedal="${escapeHtml(item.id)}">${art}
+        ${!isLooper || visualView === '02' ? `<button type="button" class="study-mini-handle" data-drag="${escapeHtml(item.id)}"
+          aria-label="Move ${escapeHtml(name)}. Drag or use Left and Right arrow keys." title="Drag to move ${escapeHtml(name)}"></button>` : ''}
+        <button type="button" class="study-mini-open" data-native-expand="${escapeHtml(item.id)}"
+          aria-label="Open ${escapeHtml(name)} controls" title="Open ${escapeHtml(name)} controls"></button>
+      </div></div>`;
+  }
+
+  function layoutNativeBoard(allPedals, compact) {
+    const board = document.querySelector('#board');
+    const order = allPedals.map(item => ({ id: item.id, type: item.type === 'looper' ? 'looper' : item.template }));
+    if (compact) {
+      layoutStudyBoard(order, `board-${Number(visualView)}`, visualPage);
+      const origin = board.getBoundingClientRect();
+      board.querySelector('.study-side').querySelectorAll('.study-row:not([hidden])').forEach((row, index) => {
+        const rect = row.getBoundingClientRect();
+        board.style.setProperty(`--study-rail-${index + 1}`, `${rect.top - origin.top + rect.height / 2}px`);
+      });
+    }
+    document.querySelector('#study-tuner-cable').hidden = !showCables || !compact;
+    const svg = document.querySelector('#cables');
+    if (!showCables) svg.replaceChildren();
+    else if (compact) drawStudyCables(order);
+    else renderPatchCables(board, svg, [...document.querySelectorAll('#pedals [data-pedal]')]);
+  }
+
+  function renderExpanded(item, index) {
+    const container = document.querySelector('#study-expanded-pedal');
+    container.innerHTML = pedalMarkup(item, index);
+    container.querySelectorAll('[data-drag]').forEach(handle => {
+      handle.removeAttribute('data-drag');
+      handle.removeAttribute('tabindex');
+    });
+  }
+
   function renderStructure(state) {
+    const version = ++renderVersion;
     const allPedals = [{ id: 'looper', type: 'looper' }, ...state.effects];
     const index = allPedals.findIndex(pedal => pedal.id === 'looper');
     allPedals.splice(index, 1);
     allPedals.splice(state.deckIndex, 0, { id: 'looper', type: 'looper' });
     const pre = allPedals.slice(0, state.deckIndex);
     const post = allPedals.slice(state.deckIndex + 1);
-    document.querySelector('#pedals').style.setProperty('--visual-rows', Math.max(1, pre.length, post.length));
     const visiblePedals = visualView !== '03' ? allPedals
       : visualPage === 'loop' ? allPedals.filter(item => item.type === 'looper')
         : visualPage === 'pre' ? pre : post;
-    document.querySelector('#pedals').innerHTML = visiblePedals.map(item => {
-      const itemIndex = allPedals.indexOf(item);
-      const visualGroup = visualView === '01'
-        ? item.type === 'looper' ? 'visual-deck' : itemIndex < state.deckIndex ? 'visual-pre' : 'visual-post'
-        : '';
-      return pedalMarkup(item, itemIndex, visualGroup);
-    }).join('');
     updateVisualSettings();
+    const board = document.querySelector('#board');
+    const pedals = document.querySelector('#pedals');
+    const compact = visualView !== 'default' && !(visualView === '03' && visualPage === 'loop');
+    const rows = items => `<div class="study-row">${items.map(compactPedal).join('')}</div><div class="study-row"></div>`;
+    board.style.height = '';
+    board.style.minHeight = '';
+    delete board.dataset.studyRails;
+    board.querySelectorAll('.study-extra-rail').forEach(rail => rail.remove());
+    if (visualView === '01') {
+      pedals.innerHTML = `<div class="study-side" data-study-side="pre"><span class="study-side-label">PRE / RECORDED</span>${rows(pre)}</div>
+        <div class="study-center">${pedalMarkup(allPedals[state.deckIndex], state.deckIndex)}</div>
+        <div class="study-side" data-study-side="post"><span class="study-side-label">POST / PLAYBACK</span>${rows(post)}</div>`;
+    } else if (compact) {
+      pedals.innerHTML = `<div class="study-side ${visualView === '02' ? 'study-full-chain' : 'study-paged-chain'}">${rows(visiblePedals)}</div>`;
+    } else {
+      pedals.innerHTML = visiblePedals.map(item => pedalMarkup(item, allPedals.indexOf(item))).join('');
+    }
+    if (expandedPedal) {
+      const item = allPedals.find(pedal => pedal.id === expandedPedal);
+      if (item) renderExpanded(item, allPedals.indexOf(item));
+      else document.querySelector('#study-pedal-dialog').close();
+    }
+    if (pendingFocus) {
+      const target = [...pedals.querySelectorAll('[data-drag], [data-native-expand]')]
+        .find(element => (element.dataset.drag || element.dataset.nativeExpand) === pendingFocus);
+      if (target) { target.focus({ preventScroll: true }); pendingFocus = null; }
+    }
     requestAnimationFrame(() => {
-      const svg = document.querySelector('#cables');
-      if (!showCables) svg.replaceChildren();
-      else renderPatchCables(document.querySelector('#board'), svg,
-        [...document.querySelectorAll('#pedals [data-pedal]')]);
+      if (version !== renderVersion) return;
+      layoutNativeBoard(allPedals, compact);
     });
     document.querySelector('#chain-order').innerHTML = allPedals.map(item =>
       `<span class="${item.type === 'looper' ? 'loop-order' : ''}">${escapeHtml(item.type === 'looper' ? 'LOOPER' : item.name)}</span>`
@@ -473,8 +542,17 @@
       return `<div class="board-control"><b>${name.toUpperCase()}</b>${dial(`board-${name}`, value, range, `Board ${name}`, true)}
         <span class="level-value">${text}</span>${toggle ? `<button class="board-switch" data-board-switch="${name}" data-native-switch="${name}" role="switch" aria-label="${name}" aria-checked="${state[name]}">${state[name] ? 'ON' : 'OFF'}</button>` : ''}</div>`;
     });
+    const loopControls = visualView === '02' ? `<div class="study-footer-loop" aria-label="Looper quick controls">
+      <strong>LOOP DECK</strong>${Object.entries(state.levels).map(([name, value]) =>
+        `<div class="board-control"><b>${name.toUpperCase()}</b>${dial(name, value, { min: 0, max: 100 }, `Deck ${name} level`, true)}<span class="level-value">${value}%</span></div>`).join('')}
+      <div class="study-transport"><button type="button" data-native-action="record">${escapeHtml(state.recordLabel)}</button>
+        <button type="button" data-native-action="stop" ${state.canStop ? '' : 'disabled'}>Stop</button>
+        <button type="button" data-native-action="clear" ${state.canClear ? '' : 'disabled'}>Clear</button></div>
+      <div class="study-timing"><label>BPM<input type="number" data-native-setting="bpm" min="30" max="300" step="1"></label>
+        <label>BEATS<input type="number" data-native-setting="beats" min="1" max="16"></label>
+        <label>UNIT<select data-native-setting="unit">${[1, 2, 4, 8, 16].map(unit => `<option>${unit}</option>`).join('')}</select></label></div></div>` : '';
     document.querySelector('#wood-footer').innerHTML =
-      `<div class="board-controls">${controls.slice(0, 3).join('')}</div><div class="board-controls">${controls.slice(3).join('')}</div>`;
+      `<div class="board-controls">${controls.slice(0, 3).join('')}</div>${loopControls}<div class="board-controls">${controls.slice(3).join('')}</div>`;
     document.querySelector('#board-title').textContent = 'The loop deck';
     document.querySelector('#board-hint').textContent = state.error || '';
     setLibraryOpen(document.body.classList.contains('toolbox-open'));
@@ -489,16 +567,25 @@
   }
 
   function updateDynamic(state) {
-    const progress = document.querySelector('.progress-ring');
-    if (progress) progress.style.setProperty('--progress', state.progress);
-    const screen = document.querySelector('.loop-readout strong');
-    if (screen) screen.textContent = state.status;
-    const tempo = document.querySelector('.loop-readout .tempo-readout');
-    if (tempo) tempo.innerHTML = `${state.bpm}<small>BPM</small>`;
-    const signature = document.querySelector('.loop-readout .signature-readout');
-    if (signature) signature.textContent = `${state.beats}/${state.unit}`;
-    const looper = document.querySelector('.pedal.looper');
-    if (looper) {
+    document.querySelectorAll('[data-native-setting]').forEach(control => {
+      if (document.activeElement !== control) control.value = state[control.dataset.nativeSetting];
+      control.disabled = state.countingIn;
+    });
+    const quick = document.querySelector('.study-transport');
+    if (quick) {
+      quick.querySelector('[data-native-action="record"]').textContent = state.recordLabel;
+      quick.querySelector('[data-native-action="stop"]').disabled = !state.canStop;
+      quick.querySelector('[data-native-action="clear"]').disabled = !state.canClear;
+    }
+    document.querySelectorAll('.pedal.looper').forEach(looper => {
+      const progress = looper.querySelector('.progress-ring');
+      if (progress) progress.style.setProperty('--progress', state.progress);
+      const screen = looper.querySelector('.loop-readout strong');
+      if (screen) screen.textContent = state.status;
+      const tempo = looper.querySelector('.tempo-readout');
+      if (tempo) tempo.innerHTML = `${state.bpm}<small>BPM</small>`;
+      const signature = looper.querySelector('.signature-readout');
+      if (signature) signature.textContent = `${state.beats}/${state.unit}`;
       looper.classList.toggle('recording', state.recording);
       looper.classList.toggle('is-stopped', !state.playing);
       const footswitch = looper.querySelector('[data-native-action="record"]');
@@ -511,7 +598,7 @@
       if (stop) stop.disabled = !state.canStop;
       const layerSummary = looper.querySelector('.looper-utility > span');
       if (layerSummary) layerSummary.textContent = `${state.layers.length} ${state.layers.length === 1 ? 'LAYER' : 'LAYERS'} · ${state.metronome ? 'CLICK ON' : 'CLICK OFF'}`;
-    }
+    });
     const tuner = document.querySelector('#wood-tuner');
     const note = state.tuner ? state.tunerNote : '';
     const cents = state.tunerCents;
@@ -676,12 +763,27 @@
       showCables = !showCables;
       localStorage.setItem('looper.showCables', String(showCables));
       updateVisualSettings();
-      if (current) renderStructure(current);
+      if (current) { renderStructure(current); updateDynamic(current); }
     }
     else if (button.dataset.studyPage) {
       visualPage = button.dataset.studyPage;
       updateVisualSettings();
-      if (current) renderStructure(current);
+      if (current) { renderStructure(current); updateDynamic(current); }
+    }
+    else if (button.dataset.nativeExpand) {
+      expandedPedal = button.dataset.nativeExpand;
+      const item = expandedPedal === 'looper' ? { id: 'looper', type: 'looper' }
+        : current.effects.find(effect => effect.id === expandedPedal);
+      if (item) {
+        const index = expandedPedal === 'looper' ? current.deckIndex
+          : current.effects.indexOf(item) + (current.effects.indexOf(item) >= current.deckIndex ? 1 : 0);
+        renderExpanded(item, index);
+        updateDynamic(current);
+        document.querySelector('#study-pedal-dialog').showModal();
+      }
+    }
+    else if (button.hasAttribute('data-study-close')) {
+      document.querySelector('#study-pedal-dialog').close();
     }
     else if (button.id === 'tempo-tap') {
       const now = performance.now();
@@ -804,6 +906,12 @@
 
   document.addEventListener('change', event => {
     const input = event.target;
+    if (input.dataset.nativeSetting) {
+      event.stopImmediatePropagation();
+      if (!input.checkValidity()) { input.reportValidity(); return; }
+      act('setting', { name: input.dataset.nativeSetting, value: Number(input.value) });
+      return;
+    }
     if (input.dataset.mapKnob !== undefined) {
       act('map-parameter', { effect: input.dataset.effect, knob: Number(input.dataset.mapKnob), parameter: input.value });
       event.stopImmediatePropagation();
@@ -825,17 +933,23 @@
   }, true);
 
   document.querySelector('#settings-dialog').addEventListener('close', () => act('audio-close'));
+  document.querySelector('#study-pedal-dialog').addEventListener('close', () => {
+    const id = expandedPedal;
+    expandedPedal = null;
+    document.querySelector('#study-expanded-pedal').replaceChildren();
+    if (id) [...document.querySelectorAll('[data-native-expand]')].find(button => button.dataset.nativeExpand === id)?.focus();
+  });
   document.querySelector('#visual-view').addEventListener('change', event => {
-    const view = { 'board-1': '01', 'board-2': '02', 'board-3': '03' }[event.target.value];
+    const view = { default: 'default', 'board-1': '01', 'board-2': '02', 'board-3': '03' }[event.target.value];
     if (!view) {
       updateVisualSettings();
       return;
     }
     visualView = view;
-    visualPage = 'pre';
+    visualPage = 'loop';
     localStorage.setItem('looper.visualView', visualView);
     updateVisualSettings();
-    if (current) renderStructure(current);
+    if (current) { renderStructure(current); updateDynamic(current); }
   });
 
   document.addEventListener('dblclick', event => {
@@ -874,12 +988,15 @@
       if (Math.hypot(drag.x - drag.startX, drag.y - drag.startY) > 5) drag.card.classList.add('reordering');
       drag.card.style.translate = `${drag.x - drag.startX}px ${drag.y - drag.startY}px`;
       const bounds = document.querySelector('#board').getBoundingClientRect();
-      const transferPage = visualView === '03' && (visualPage === 'pre' && event.clientX >= bounds.right - 65
-        ? 'post' : visualPage === 'post' && event.clientX <= bounds.left + 65 ? 'pre' : '');
+      const viewport = document.querySelector('.board-viewport').getBoundingClientRect();
+      const left = Math.max(bounds.left, viewport.left, 0);
+      const right = Math.min(bounds.right, viewport.right, innerWidth);
+      const transferPage = visualView === '03' && (visualPage === 'pre' && event.clientX >= right - 65
+        ? 'post' : visualPage === 'post' && event.clientX <= left + 65 ? 'pre' : '');
       const edge = document.querySelector('[data-study-edge]');
       edge.hidden = !transferPage;
       if (transferPage) {
-        edge.style.left = `${transferPage === 'post' ? bounds.width - 65 : 0}px`;
+        edge.style.left = `${(transferPage === 'post' ? right - 65 : left) - bounds.left}px`;
         edge.textContent = `DROP TO ${transferPage.toUpperCase()}`;
       }
     }
@@ -901,17 +1018,22 @@
     const id = card.dataset.pedal;
     const changed = card.classList.contains('reordering');
     const board = document.querySelector('#board').getBoundingClientRect();
-    const inside = event.clientX >= board.left && event.clientX <= board.right
-      && event.clientY >= board.top && event.clientY <= board.bottom;
+    const viewport = document.querySelector('.board-viewport').getBoundingClientRect();
+    const left = Math.max(board.left, viewport.left, 0);
+    const right = Math.min(board.right, viewport.right, innerWidth);
+    const inside = event.clientX >= left && event.clientX <= right
+      && event.clientY >= Math.max(board.top, viewport.top, 0)
+      && event.clientY <= Math.min(board.bottom, viewport.bottom, innerHeight);
     const transferPage = visualView === '03' && inside
-      ? visualPage === 'pre' && event.clientX >= board.right - 65 ? 'post'
-        : visualPage === 'post' && event.clientX <= board.left + 65 ? 'pre' : ''
+      ? visualPage === 'pre' && event.clientX >= right - 65 ? 'post'
+        : visualPage === 'post' && event.clientX <= left + 65 ? 'pre' : ''
       : '';
     document.querySelector('[data-study-edge]').hidden = true;
     card.style.translate = '';
     card.classList.remove('reordering');
-    drag.handle.releasePointerCapture(event.pointerId);
+    const handle = drag.handle;
     drag = null;
+    if (handle.hasPointerCapture(event.pointerId)) handle.releasePointerCapture(event.pointerId);
     if (changed && event.type === 'pointerup' && inside) {
       if (transferPage) {
         visualPage = transferPage;
@@ -926,11 +1048,21 @@
   document.addEventListener('lostpointercapture', finishPointer, true);
 
   document.addEventListener('keydown', event => {
-    const handle = event.target.closest('[data-drag]');
+    const handle = event.target.closest('[data-drag], [data-native-expand]');
     if (handle && (event.key === 'ArrowLeft' || event.key === 'ArrowRight')) {
       event.preventDefault();
       event.stopImmediatePropagation();
-      act('move', { id: handle.dataset.drag, delta: event.key === 'ArrowLeft' ? -1 : 1 });
+      const id = handle.dataset.drag || handle.dataset.nativeExpand;
+      const effectIndex = current.effects.findIndex(effect => effect.id === id);
+      const source = id === 'looper' ? current.deckIndex
+        : effectIndex + (effectIndex >= current.deckIndex ? 1 : 0);
+      if (visualView === '03' && ((visualPage === 'pre' && event.key === 'ArrowRight' && source === current.deckIndex - 1)
+        || (visualPage === 'post' && event.key === 'ArrowLeft' && source === current.deckIndex + 1))) {
+        visualPage = visualPage === 'pre' ? 'post' : 'pre';
+      }
+      const delta = event.key === 'ArrowLeft' ? -1 : 1;
+      if (source + delta >= 0 && source + delta <= current.effects.length) pendingFocus = id;
+      act('move', { id, delta });
       return;
     }
     const dialControl = event.target.closest('.level-dial');
@@ -947,4 +1079,15 @@
       requestDial(dialControl, changes[event.key]);
     }
   }, true);
+
+  let viewportWidth = 0;
+  new ResizeObserver(() => {
+    const width = document.querySelector('.board-viewport').clientWidth;
+    if (width === viewportWidth || !current || drag) return;
+    viewportWidth = width;
+    const allPedals = [...current.effects];
+    allPedals.splice(current.deckIndex, 0, { id: 'looper', type: 'looper' });
+    const compact = visualView !== 'default' && !(visualView === '03' && visualPage === 'loop');
+    layoutNativeBoard(allPedals, compact);
+  }).observe(document.querySelector('.board-viewport'));
 })();

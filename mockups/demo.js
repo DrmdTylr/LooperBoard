@@ -474,17 +474,17 @@ const studyArtRatios = {};
 function studyArtRatio(type) {
   if (studyArtRatios[type] === undefined) {
     const artwork = document.createElement('template');
-    artwork.innerHTML = type === 'looper' ? $('.gallery-looper').outerHTML : galleryPedal(type);
+    artwork.innerHTML = type === 'looper' ? $('.gallery-looper').outerHTML : galleryPedal(effects[type] ? type : 'boost');
     const body = artwork.content.querySelector('[data-gallery-body]');
     studyArtRatios[type] = (Number(body.getAttribute('width')) + 24) / Number(body.getAttribute('height'));
   }
   return studyArtRatios[type];
 }
 
-function studyGroups(order) {
+function studyGroups(order, view = study, page = studyPage) {
   const loop = order.findIndex(pedal => pedal.type === 'looper');
-  if (study === 'board-1') return [order.slice(0, loop), order.slice(loop + 1)];
-  if (study === 'board-3') return [studyPage === 'pre' ? order.slice(0, loop) : order.slice(loop + 1)];
+  if (view === 'board-1') return [order.slice(0, loop), order.slice(loop + 1)];
+  if (view === 'board-3') return [page === 'pre' ? order.slice(0, loop) : order.slice(loop + 1)];
   return [order];
 }
 
@@ -510,7 +510,7 @@ function studyRows(pedals, count, height, gap) {
   return rows;
 }
 
-function layoutStudyBoard(order) {
+function layoutStudyBoard(order, view = study, page = studyPage) {
   const board = $('#board');
   const focused = board.contains(document.activeElement) ? document.activeElement : null;
   const viewport = $('.board-viewport');
@@ -526,7 +526,7 @@ function layoutStudyBoard(order) {
   let sideMin = value('--study-side-min');
   let deckGap = value('--study-deck-gap');
   let deckWidth = value('--study-deck-width');
-  if (study === 'board-1') {
+  if (view === 'board-1') {
     const scale = Math.min(1, available / (2 * (sideMin + deckGap) + deckWidth));
     sideMin *= scale;
     deckGap *= scale;
@@ -535,16 +535,16 @@ function layoutStudyBoard(order) {
     board.style.setProperty('--study-deck-gap', `${deckGap}px`);
     board.style.setProperty('--study-deck-width', `${deckWidth}px`);
   }
-  const centerHeight = study === 'board-1' ? board.querySelector('.study-center').scrollHeight : 0;
+  const centerHeight = view === 'board-1' ? board.querySelector('.study-center').scrollHeight : 0;
   const pageHeight = Math.max(1, Math.min(510, innerHeight - 48), centerHeight + paddingHeight);
   board.style.height = `${pageHeight}px`;
   board.style.minHeight = `${pageHeight}px`;
   const verticalSpace = pageHeight - paddingHeight;
-  const groups = studyGroups(order);
+  const groups = studyGroups(order, view, page);
   const requiredWidth = (count, height) => {
     const widths = groups.map(group => Math.max(sideMin, ...studyRows(group, count, height, gap).map(row =>
       row.reduce((sum, pedal) => sum + studyArtRatio(pedal.type) * height, 0) + Math.max(0, row.length - 1) * gap)));
-    return study === 'board-1' ? widths[0] + widths[1] + deckWidth + 2 * deckGap : widths[0];
+    return view === 'board-1' ? widths[0] + widths[1] + deckWidth + 2 * deckGap : widths[0];
   };
   const maxRows = Math.max(1, ...groups.map(group => group.length));
   let count = 1, height = 0;
@@ -634,11 +634,11 @@ function renderStudyBoard() {
   }
 }
 
-function drawStudyCables() {
+function drawStudyCables(order = studyDrag?.order || state.chain) {
   const board = $('#board');
   const svg = $('#cables');
   const origin = board.getBoundingClientRect();
-  const cards = (studyDrag?.order || state.chain).filter(pedal => pedal.id)
+  const cards = order.filter(pedal => pedal.id)
     .map(pedal => board.querySelector(`[data-pedal="${pedal.id}"]`)).filter(Boolean);
   const tuner = $('#wood-tuner').getBoundingClientRect();
   const wire = path => `<path class="study-cable-shadow" d="${path}"/><path class="study-cable" d="${path}"/><path class="study-cable-highlight" d="${path}"/>`;
@@ -819,6 +819,7 @@ function renderPatchCables(board, svg, pedals) {
 }
 
 function drawCables() {
+  if (document.documentElement.classList.contains('juce-hosted')) return;
   if (study) {
     const board = $('#board');
     const origin = board.getBoundingClientRect();
@@ -1545,7 +1546,7 @@ function animate(time) {
   if (reorderDrag?.card.classList.contains('reordering')) updateReorder(true);
   const elapsed = Math.min(time - frameTime, 100) / 1000;
   frameTime = time;
-  if (state && state.playing && !reducedMotion) {
+  if (!document.documentElement.classList.contains('juce-hosted') && state && state.playing && !reducedMotion) {
     state.progress = (state.progress + elapsed / 8) % 1;
     const ring = $('.progress-ring'); if (ring) ring.style.setProperty('--progress', state.progress);
   }

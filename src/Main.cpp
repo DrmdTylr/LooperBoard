@@ -509,6 +509,8 @@ class LooperView final : public juce::Component, public juce::DragAndDropContain
             else if (path == "/styles.css") { name = "styles_css"; mime = "text/css"; }
             else if (path == "/demo.js") { name = "demo_js"; mime = "text/javascript"; }
             else if (path == "/native.js") { name = "native_js"; mime = "text/javascript"; }
+            else if (path == "/assets/black-plugged.png") { name = "blackplugged_png"; mime = "image/png"; }
+            else if (path == "/assets/right-angle-plugged.png") { name = "rightangleplugged_png"; mime = "image/png"; }
             if (name == nullptr) return std::optional<juce::WebBrowserComponent::Resource> {};
             int size = 0;
             const auto* bytes = BinaryData::getNamedResource(name, size);

@@ -38,7 +38,9 @@ endif()
         mockups/index.html
         mockups/styles.css
         mockups/demo.js
-        mockups/native.js)
+        mockups/native.js
+        mockups/assets/black-plugged.png
+        mockups/assets/right-angle-plugged.png)
 target_sources(Looper PRIVATE src/Main.cpp)
 if(WIN32)
     target_include_directories(Looper PRIVATE "${asio_sdk_SOURCE_DIR}/common")

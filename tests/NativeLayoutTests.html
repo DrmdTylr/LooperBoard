@@ -49,7 +49,8 @@ async function run() {
       select.dispatchEvent(new win.Event('change', { bubbles: true }));
       await new Promise(resolve => setTimeout(resolve, 20));
     };
-    assert(select.value === 'default' && doc.querySelectorAll('#pedals .pedal').length === 3, 'Default board');
+    assert(select.value === 'default' && doc.querySelectorAll('#pedals [data-pedal]').length === 3
+      && doc.querySelectorAll('#pedals .popup-detail').length === 2, 'Default board uses pedal faces');
     await setView('board-1');
     assert(doc.querySelectorAll('#pedals .study-mini').length === 2
       && doc.querySelectorAll('#pedals .looper').length === 1, 'Fixed deck');
@@ -70,7 +71,88 @@ async function run() {
     doc.querySelector('[data-study-page="post"]').click();
     assert(doc.querySelector('#pedals [data-pedal]').dataset.pedal === 'e2', 'Post page');
     await setView('default');
-    assert(doc.querySelectorAll('#pedals .pedal').length === 3 && win.localStorage.getItem('looper.visualView') === 'default', 'Return to default');
+    assert(doc.querySelectorAll('#pedals [data-pedal]').length === 3 && win.localStorage.getItem('looper.visualView') === 'default', 'Return to default');
+    const reverb = effect('r1', 'halo', 'Room Reverb', 'Reverb');
+    reverb.knobs = ['Decay', 'Tone', 'Mix', 'Pre-delay', 'Size', 'Low', 'High', 'Mode'];
+    reverb.loaded = true;
+    reverb.pluginName = 'Test Reverb';
+    reverb.parameters = [{ id: 'p', name: 'Plugin Tone' }, { id: 'm', name: 'Plugin Mode' }];
+    reverb.assignments = reverb.knobs.map(() => ({ id: '', value: 0, text: '' }));
+    reverb.assignments[2] = { id: 'p', value: .4, text: '40%' };
+    reverb.assignments[7] = { id: 'm', value: 0, text: 'Off' };
+    state.effects = [reverb];
+    state.deckIndex = 1;
+    win.testListeners['native-state'](state);
+    await new Promise(resolve => setTimeout(resolve, 30));
+    const face = doc.querySelector('#pedals .popup-shape-reverb');
+    assert(face && face.querySelectorAll('[data-parameter-knob]').length === 6
+      && !face.querySelector('[data-parameter-knob="1"]')
+      && face.querySelector('[data-parameter-knob="2"]'), 'Reverb hides Tone without shifting Mix');
+    assert(Math.abs(face.closest('.board-pedal').getBoundingClientRect().height - 425) < 1
+      && Math.abs(doc.querySelector('#pedals .looper').getBoundingClientRect().height - 425) < 1, 'Default enclosure heights');
+    const mix = face.querySelector('[data-parameter-knob="2"]');
+    mix.dispatchEvent(new win.KeyboardEvent('keydown', { key: 'End', bubbles: true }));
+    assert(win.testEvents.at(-1)[1].action === 'set-parameter'
+      && win.testEvents.at(-1)[1].knob === 2 && win.testEvents.at(-1)[1].value === 1, 'Real parameter dial');
+    const mapping = face.querySelector('[data-map-knob="3"]');
+    mapping.value = 'p';
+    mapping.dispatchEvent(new win.Event('change', { bubbles: true }));
+    assert(win.testEvents.at(-1)[1].action === 'map-parameter' && win.testEvents.at(-1)[1].knob === 3, 'Gallery dial assignment');
+    face.querySelector('[data-native-mode]').click();
+    assert(win.testEvents.at(-1)[1].action === 'set-parameter'
+      && win.testEvents.at(-1)[1].knob === 7 && win.testEvents.at(-1)[1].value === 1, 'Mode switch drives assigned VST parameter');
+    reverb.assignments[7].value = 1;
+    win.testListeners['native-state'](state);
+    assert(face.querySelector('[data-native-mode]').getAttribute('aria-pressed') === 'true', 'Mode follows VST state');
+    for (const action of ['editor', 'change-vst', 'remove-vst', 'bypass', 'remove-effect']) {
+      face.querySelector(`[data-native-action="${action}"]`).click();
+      assert(win.testEvents.at(-1)[1].action === action && win.testEvents.at(-1)[1].effect === 'r1', `${action} action`);
+    }
+    await setView('board-2');
+    doc.querySelector('[data-native-expand="r1"]').click();
+    assert(doc.querySelector('#study-pedal-dialog').open
+      && doc.querySelector('#study-expanded-pedal .popup-shape-reverb'), 'Compact views open new pedal face');
+    doc.querySelector('[data-study-close]').click();
+    await new Promise(resolve => setTimeout(resolve, 0));
+    await setView('default');
+    frame.style.width = '320px';
+    await new Promise(resolve => setTimeout(resolve, 30));
+    assert(doc.querySelector('#pedals .popup-shape-reverb').getBoundingClientRect().height > 0, 'Narrow board renders');
+    await setView('board-2');
+    doc.querySelector('[data-native-expand="r1"]').click();
+    assert(doc.querySelector('#study-pedal-dialog').scrollWidth <= doc.querySelector('#study-pedal-dialog').clientWidth, 'Narrow native popup fits');
+    doc.querySelector('[data-study-close]').click();
+    await new Promise(resolve => setTimeout(resolve, 0));
+    frame.style.width = '1500px';
+    await setView('default');
+    for (const [type, knobs, expected] of [
+      ['spring', ['Dwell', 'Tone', 'Mix', 'Decay', 'Pre-delay', 'Low', 'High', 'Mode'], 6],
+      ['tide', ['Time', 'Feedback', 'Mix', 'Tone', 'Rate', 'Depth', 'Mode'], 6],
+      ['tape', ['Time', 'Age', 'Feedback', 'Mix', 'Wow', 'Flutter', 'Mode'], 6],
+      ['amp', ['Gain', 'Bass', 'Treble', 'Level', 'Mode'], 4],
+      ['cab', ['Mic', 'Room', 'Air', 'Level', 'Mode'], 4]
+    ]) {
+      state.effects = [{ ...reverb, id: type, template: type, knobs, pluginName: 'A very long plugin name '.repeat(8),
+        assignments: knobs.map(() => ({ id: 'p', value: .4, text: '40%' })) }];
+      win.testListeners['native-state'](state);
+      const art = doc.querySelector('#pedals .popup-gallery');
+      const dials = [...art.querySelectorAll('.popup-art-dial')];
+      assert(dials.length === expected, `${type} exposes all controls`);
+      const overlaps = (a, b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+      const screen = art.querySelector('.popup-art-screen').getBoundingClientRect();
+      for (const dial of dials) {
+        const box = dial.querySelector('.effect-knob').getBoundingClientRect();
+        assert(!overlaps(box, screen), `${type} dial overlaps screen`);
+        for (const other of dials.filter(candidate => candidate !== dial))
+          assert(!overlaps(box, other.querySelector('.effect-knob').getBoundingClientRect())
+            && !overlaps(box, other.querySelector('.popup-art-label').getBoundingClientRect()), `${type} dials overlap`);
+      }
+      const buttons = [...art.querySelectorAll('.popup-art-screen button')];
+      assert(buttons.every(button => {
+        const box = button.getBoundingClientRect();
+        return box.left >= screen.left && box.right <= screen.right && box.top >= screen.top && box.bottom <= screen.bottom;
+      }), `${type} VST actions fit in screen`);
+    }
     result.textContent = 'PASS';
   } catch (error) {
     result.textContent = `FAIL: ${error.stack || error}`;

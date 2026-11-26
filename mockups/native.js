@@ -72,7 +72,8 @@
             title="Drag ${escapeHtml(template.name)} onto the pedalboard">
             <span class="effect-swatch" style="background:${pedalColor(template.id)}" aria-hidden="true"></span>
             <span class="library-pedal-name"><strong>${escapeHtml(template.name)}</strong>
-              <small>${template.knobs.map(escapeHtml).join(' · ')}</small></span>
+              <small>${template.knobs.filter(name => name !== 'Mode'
+                && (!['halo', 'spring'].includes(template.id) || name !== 'Tone')).map(escapeHtml).join(' · ')}</small></span>
           </div>`).join('')}
         </div>
       </section>`;
@@ -384,6 +385,83 @@
       title="Drag up/down or use arrow keys to adjust"></div>`;
   }
 
+  function nativePedalFace(item) {
+    const type = effects[item.template] ? item.template : 'boost';
+    const effect = effects[type];
+    const shape = ['halo', 'spring'].includes(type) ? 'reverb'
+      : effect.category === 'Delay' ? 'delay' : effect.category === 'Amp & Cab' ? 'amp-cab' : 'stompbox';
+    const controls = shape === 'stompbox' ? item.knobs
+      : [...new Set([...(galleryControls[type] || []), ...item.knobs.filter(name => name !== 'Mode'
+        && (!['halo', 'spring'].includes(type) || name !== 'Tone'))])];
+    const id = escapeHtml(item.id);
+    const assignment = name => {
+      const index = item.knobs.indexOf(name);
+      if (index < 0) return `<span class="popup-parameter-label">${escapeHtml(name)}</span>`;
+      if (!item.loaded) return `<span class="popup-parameter-label">${escapeHtml(name)}</span>`;
+      return `<span class="popup-parameter-wrap"><select class="popup-parameter" data-map-knob="${index}" data-effect="${id}"
+        aria-label="Assign ${escapeHtml(name)} parameter"><option value="">${escapeHtml(name)} (unassigned)</option>${item.parameters.map(parameter =>
+          `<option value="${escapeHtml(parameter.id)}" ${item.assignments[index]?.id === parameter.id ? 'selected' : ''}>${escapeHtml(parameter.name)}</option>`
+        ).join('')}</select></span>`;
+    };
+    const knob = name => {
+      const index = item.knobs.indexOf(name);
+      const assigned = index >= 0 && item.assignments[index]?.id;
+      return `<div class="effect-knob level-dial" data-parameter-knob="${index}" data-effect="${id}" role="slider"
+        aria-label="${escapeHtml(item.name)} ${escapeHtml(name)}" aria-valuemin="0" aria-valuemax="1000" aria-valuenow="0"
+        ${assigned ? 'tabindex="0"' : 'aria-disabled="true"'}></div>`;
+    };
+    const plugin = `<div class="popup-plugin-actions"><button data-native-action="${item.loaded ? 'editor' : 'add-vst'}" data-effect="${id}">${item.loaded ? 'Open VST' : 'Choose VST'}</button>
+      ${item.loaded ? `<button data-native-action="change-vst" data-effect="${id}">Change VST</button><button data-native-action="remove-vst" data-effect="${id}">Remove VST</button>` : ''}</div>`;
+    const remove = `<button type="button" class="popup-remove" data-native-action="remove-effect" data-effect="${id}">Remove pedal</button>`;
+    const bypass = `<button type="button" class="popup-footswitch" data-native-action="bypass" data-effect="${id}"
+      aria-label="${item.bypassed ? 'Engage' : 'Bypass'} ${escapeHtml(item.name)}" aria-pressed="${item.loaded && !item.bypassed}" ${item.loaded ? '' : 'disabled'}><span></span></button>`;
+    const appearance = galleryAppearance(type);
+    if (shape === 'stompbox') {
+      const width = controls.length > 4 ? 390 : ['eq', 'harmonizer'].includes(type) ? 350
+        : controls.length > 3 ? 310 : type === 'boost' ? 250 : 280;
+      return `<article class="popup-detail popup-shape-stompbox" style="--popup-color:${appearance.color};--popup-ink:${appearance.ink};--popup-width:${width}px">
+        <span class="popup-jack popup-jack-left"></span><span class="popup-jack popup-jack-right"></span>
+        <div class="popup-face"><span class="popup-screw popup-screw-left"></span><span class="popup-screw popup-screw-right"></span>
+          <header class="popup-pedal-header"><span>LOOPER / ${escapeHtml(item.category)}</span><h2>${escapeHtml(item.name)}</h2></header>
+          <div class="popup-dials ${controls.length > 4 ? 'popup-dials-wide' : ''} ${controls.length === 3 ? 'popup-dials-three' : ''}">
+            ${controls.map(name => `<div class="popup-dial">${knob(name)}${assignment(name)}<span class="parameter-value"></span></div>`).join('')}</div>
+          <div class="popup-plugin"><span class="popup-plugin-label">VST3</span><strong title="${escapeHtml(item.loaded ? item.pluginName : 'No VST selected')}">${escapeHtml(item.loaded ? item.pluginName : 'No VST selected')}</strong>${plugin}</div>
+          ${remove}<span class="popup-led ${item.loaded && !item.bypassed ? 'lit' : ''}"></span>${bypass}
+          <span class="popup-footswitch-label">${!item.loaded ? 'NO VST' : item.bypassed ? 'BYPASSED' : 'ENGAGED'}</span>
+        </div></article>`;
+    }
+    const yOrigin = shape === 'delay' ? 32 : 15;
+    const height = shape === 'delay' ? 188 : 222;
+    const position = (x, y) => `left:${(x + 1) * 100 / 202}%;top:${(y - yOrigin) * 100 / height}%`;
+    const slots = galleryControls[type];
+    const used = controls.map(name => slots.indexOf(name)).filter(index => index >= 0);
+    const dials = controls.map(name => {
+      let index = slots.indexOf(name);
+      if (index < 0) { index = 0; while (used.includes(index)) index++; used.push(index); }
+      const x = shape === 'amp-cab' ? (index % 2 ? 161 : 39)
+        : shape === 'reverb' && index >= 4 ? (index === 4 ? 84 : 116) : (index % 2 ? 157 : 43);
+      const y = shape === 'amp-cab' ? (index < 2 ? 82 : 112)
+        : shape === 'reverb' && index >= 4 ? 82 : (shape === 'delay' ? 68 : 67) + Math.floor(index / 2) * (shape === 'delay' ? 32 : 36);
+      return `<div class="popup-art-dial ${shape === 'amp-cab' ? (controls.length <= 2 ? 'popup-art-dial-large' : 'popup-art-dial-compact') : ''}" style="${position(x, y)}">
+        ${knob(name)}<div class="popup-art-label">${assignment(name)}<span class="parameter-value" hidden></span></div></div>`;
+    }).join('');
+    const screen = shape === 'delay' ? [71, 66, 58, 29] : shape === 'amp-cab' ? [68, 55, 64, 60] : [70, 107, 60, 32];
+    const modeIndex = item.knobs.indexOf('Mode');
+    const mode = item.assignments[modeIndex];
+    const switchY = shape === 'delay' ? 179 : 192;
+    return `<article class="popup-detail popup-gallery popup-shape-${shape}" style="--popup-ink:${appearance.ink}">
+      <div class="popup-gallery-art">${galleryPedal(type, true).replaceAll(`finish-${type}`, `native-finish-${id}`)}
+        ${dials}<div class="popup-plugin popup-art-screen" style="left:${(screen[0] + 1) * 100 / 202}%;top:${(screen[1] - yOrigin) * 100 / height}%;width:${screen[2] * 100 / 202}%;height:${screen[3] * 100 / height}%">
+          <strong title="${escapeHtml(item.loaded ? item.pluginName : 'No VST selected')}">${escapeHtml(item.loaded ? item.pluginName : 'No VST selected')}</strong>${plugin}</div>
+        <div class="native-art-remove" style="${position(100, shape === 'amp-cab' ? 158 : shape === 'delay' ? 154 : 160)}">${remove}</div>
+        <div class="popup-art-switch" style="${position(51, switchY)}"><span class="popup-art-led ${item.loaded && !item.bypassed ? 'lit' : ''}"></span>${bypass}<span class="popup-art-switch-label">BYPASS</span></div>
+        <div class="popup-art-switch" style="${position(149, switchY)}"><span class="popup-art-led ${mode?.value >= .5 ? 'lit' : ''}"></span>
+          <button type="button" class="popup-footswitch" data-native-mode="${id}" data-mode-index="${modeIndex}" aria-label="Toggle ${escapeHtml(item.name)} mode"
+            aria-pressed="${mode?.value >= .5}" ${mode?.id ? '' : 'disabled'}><span></span></button>
+          <span class="popup-art-switch-label">${assignment('Mode')}</span></div>
+      </div></article>`;
+  }
+
   function pedalMarkup(item, index, visualGroup) {
     if (item.type === 'looper') {
       const state = current;
@@ -408,35 +486,10 @@
       </article>`;
     }
 
-    return `<article class="pedal effect ${visualGroup} ${!item.loaded || item.bypassed ? 'off' : ''} ${item.loaded ? 'has-vst' : ''}"
-      data-pedal="${escapeHtml(item.id)}" style="--pedal:${pedalColor(item.template)};--pedal-ink:${effects[item.template] ? galleryAppearance(item.template).ink : '#242521'}">
-      <div class="drag-handle" data-drag="${escapeHtml(item.id)}" tabindex="0">
-        <div class="pedal-number"><span>0${index + 1} / ${escapeHtml(item.category)}</span><span>${item.loaded ? (item.channels === 1 ? 'MONO' : 'STEREO') : 'TEMPLATE'}</span></div>
-        <h3 class="pedal-title">${escapeHtml(item.loaded ? item.pluginName : item.name)}</h3><span class="pedal-category">${escapeHtml(item.category)}</span>
-      </div>
-      <div class="effect-panel ${escapeHtml(item.template)}"><span>${escapeHtml(item.loaded ? item.pluginName : item.category)}</span>
-        <small>${item.loaded ? 'VST3 AUDIO EFFECT' : 'VST3 PEDAL TEMPLATE'}</small>
-        <div class="vst-management">
-          <button data-native-action="${item.loaded ? 'editor' : 'add-vst'}" data-effect="${escapeHtml(item.id)}">${item.loaded ? 'OPEN VST3' : 'ADD VST3'}</button>
-          ${item.loaded ? `<button data-native-action="change-vst" data-effect="${escapeHtml(item.id)}">CHANGE</button>
-          <button data-native-action="remove-vst" data-effect="${escapeHtml(item.id)}">REMOVE VST</button>` : ''}
-        </div></div>
-      <div class="pedal-knobs ${item.knobs.length === 3 ? 'three-knobs' : ''}" aria-label="${escapeHtml(item.name)} controls">${item.knobs.map((knob, index) =>
-        `<div class="knob-group">
-          <div class="effect-knob level-dial" data-parameter-knob="${index}" data-effect="${escapeHtml(item.id)}" role="slider"
-            aria-label="${escapeHtml(knob)}" aria-valuemin="0" aria-valuemax="1000" aria-valuenow="0"
-            ${item.assignments[index]?.id ? 'tabindex="0"' : 'aria-disabled="true"'}></div>
-          <select class="parameter-select" data-map-knob="${index}" data-effect="${escapeHtml(item.id)}"
-            aria-label="Assign ${escapeHtml(knob)} parameter" ${item.loaded ? '' : 'disabled'}>
-            <option value="">Unassigned</option>${item.parameters.map(parameter =>
-              `<option value="${escapeHtml(parameter.id)}" ${item.assignments[index]?.id === parameter.id ? 'selected' : ''}>${escapeHtml(parameter.name)}</option>`
-            ).join('')}</select><span class="parameter-value"></span></div>`
-      ).join('')}</div>
-      <div class="effect-status"><span class="led"></span>${!item.loaded ? 'NO VST3' : item.bypassed ? 'BYPASSED' : 'ENGAGED'}</div>
-      <button class="bypass-button" data-native-action="bypass" data-effect="${escapeHtml(item.id)}" aria-label="${item.bypassed ? 'Engage' : 'Bypass'} ${escapeHtml(item.name)}" aria-pressed="${!item.bypassed}" ${item.loaded ? '' : 'disabled'}></button>
-      <span class="footswitch-label">${item.bypassed ? 'ENGAGE' : 'BYPASS'}</span>
-      <button data-native-action="remove-effect" data-effect="${escapeHtml(item.id)}">REMOVE PEDAL</button>
-    </article>`;
+    return `<div class="board-pedal" data-pedal="${escapeHtml(item.id)}">
+      <div class="drag-handle board-pedal-handle" data-drag="${escapeHtml(item.id)}" tabindex="0"
+        aria-label="Move ${escapeHtml(item.name)}. Drag or use Left and Right arrow keys.">↔ MOVE</div>
+      ${nativePedalFace(item)}</div>`;
   }
 
   function compactPedal(item) {
@@ -479,11 +532,15 @@
 
   function renderExpanded(item, index) {
     const container = document.querySelector('#study-expanded-pedal');
-    container.innerHTML = pedalMarkup(item, index);
+    container.innerHTML = item.type === 'looper' ? pedalMarkup(item, index) : nativePedalFace(item);
+    const dialog = document.querySelector('#study-pedal-dialog');
+    dialog.classList.toggle('gallery-popup', item.type !== 'looper');
+    dialog.setAttribute('aria-label', `${item.type === 'looper' ? 'Loop Deck' : item.name} controls`);
     container.querySelectorAll('[data-drag]').forEach(handle => {
       handle.removeAttribute('data-drag');
       handle.removeAttribute('tabindex');
     });
+    container.querySelectorAll('.popup-gallery-art svg').forEach(svg => sizeGalleryArt(svg, 600));
   }
 
   function renderStructure(state) {
@@ -515,6 +572,7 @@
     } else {
       pedals.innerHTML = visiblePedals.map(item => pedalMarkup(item, allPedals.indexOf(item))).join('');
     }
+    pedals.querySelectorAll('.popup-gallery-art svg').forEach(svg => sizeGalleryArt(svg, 600));
     if (expandedPedal) {
       const item = allPedals.find(pedal => pedal.id === expandedPedal);
       if (item) renderExpanded(item, allPedals.indexOf(item));
@@ -619,7 +677,17 @@
       control.setAttribute('aria-valuenow', value);
       control.setAttribute('aria-valuetext', assignment?.text || 'Unassigned');
       control.style.setProperty('--turn', `${value * .27 - 135}deg`);
-      control.parentElement.querySelector('.parameter-value').textContent = assignment?.text || '';
+      const valueLabel = control.parentElement.querySelector('.parameter-value');
+      if (valueLabel) valueLabel.textContent = assignment?.text || '';
+    });
+    document.querySelectorAll('[data-native-mode]').forEach(button => {
+      const effect = state.effects.find(item => item.id === button.dataset.nativeMode);
+      const assignment = effect?.assignments[Number(button.dataset.modeIndex)];
+      const enabled = Boolean(assignment?.id);
+      const pressed = enabled && assignment.value >= .5;
+      button.disabled = !enabled;
+      button.setAttribute('aria-pressed', pressed);
+      button.parentElement.querySelector('.popup-art-led').classList.toggle('lit', pressed);
     });
     for (const [name, value] of Object.entries(state.footer)) {
       const range = footer[name];
@@ -744,6 +812,15 @@
       const fields = { effect: button.dataset.effect || '' };
       if (button.dataset.vstIndex !== undefined) fields.index = Number(button.dataset.vstIndex);
       act(action, fields);
+      return;
+    }
+    if (button.dataset.nativeMode) {
+      const effect = current?.effects.find(item => item.id === button.dataset.nativeMode);
+      const index = Number(button.dataset.modeIndex);
+      const assignment = effect?.assignments[index];
+      if (assignment?.id) act('set-parameter', { effect: effect.id, knob: index, value: assignment.value >= .5 ? 0 : 1 });
+      event.preventDefault();
+      event.stopImmediatePropagation();
       return;
     }
     if (!current && (button.id === 'settings-open' || button.id === 'wood-layers')) {
@@ -936,6 +1013,7 @@
   document.querySelector('#study-pedal-dialog').addEventListener('close', () => {
     const id = expandedPedal;
     expandedPedal = null;
+    document.querySelector('#study-pedal-dialog').classList.remove('gallery-popup');
     document.querySelector('#study-expanded-pedal').replaceChildren();
     if (id) [...document.querySelectorAll('[data-native-expand]')].find(button => button.dataset.nativeExpand === id)?.focus();
   });

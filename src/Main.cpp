@@ -401,13 +401,13 @@ const std::array<PedalTemplate, 24>& getPedalTemplates()
         { "flanger", "Modulation", "Flanger", { "Rate", "Depth", "Feedback", "Mix" } },
         { "phaser", "Modulation", "Phaser", { "Rate", "Depth", "Feedback", "Mix" } },
         { "tremolo", "Modulation", "Tremolo", { "Rate", "Depth", "Shape", "Level" } },
-        { "tide", "Delay", "Digital Delay", { "Time", "Feedback", "Mix", "Tone" } },
-        { "tape", "Delay", "Tape Echo", { "Time", "Age", "Feedback", "Mix" } },
-        { "halo", "Reverb", "Room Reverb", { "Decay", "Tone", "Mix" } },
-        { "spring", "Reverb", "Spring Reverb", { "Dwell", "Tone", "Mix" } },
+        { "tide", "Delay", "Digital Delay", { "Time", "Feedback", "Mix", "Tone", "Rate", "Depth", "Mode" } },
+        { "tape", "Delay", "Tape Echo", { "Time", "Age", "Feedback", "Mix", "Wow", "Flutter", "Mode" } },
+        { "halo", "Reverb", "Room Reverb", { "Decay", "Tone", "Mix", "Pre-delay", "Size", "Low", "High", "Mode" } },
+        { "spring", "Reverb", "Spring Reverb", { "Dwell", "Tone", "Mix", "Decay", "Pre-delay", "Low", "High", "Mode" } },
         { "shimmer", "Reverb", "Shimmer", { "Decay", "Shimmer", "Mix" } },
-        { "amp", "Amp & Cab", "Amp Sim", { "Gain", "Bass", "Treble", "Level" } },
-        { "cab", "Amp & Cab", "Cab Sim", { "Mic", "Room", "Air", "Level" } }
+        { "amp", "Amp & Cab", "Amp Sim", { "Gain", "Bass", "Treble", "Level", "Mode" } },
+        { "cab", "Amp & Cab", "Cab Sim", { "Mic", "Room", "Air", "Level", "Mode" } }
     }};
     return templates;
 }
@@ -418,6 +418,14 @@ const PedalTemplate* findPedalTemplate(const juce::String& id)
     const auto found = std::find_if(templates.begin(), templates.end(),
         [&id](const auto& pedal) { return pedal.id == id; });
     return found == templates.end() ? nullptr : &*found;
+}
+
+bool upgradePedalMappings(const PedalTemplate& pedal, juce::StringArray& mappings)
+{
+    const auto count = static_cast<int>(pedal.knobs.size());
+    const auto legacy = pedal.id == "halo" || pedal.id == "spring" ? 3
+        : pedal.id == "tide" || pedal.id == "tape" || pedal.id == "amp" || pedal.id == "cab" ? 4 : count;
+    return ::upgradePedalMappings(mappings, count, legacy);
 }
 
 const PedalTemplate& customPedalTemplate()
@@ -1973,7 +1981,7 @@ private:
                 const auto barHeight = 5 + ((i * 13 + 7) % 18);
                 g.fillRect(display.getCentreX() - 67 + i * 8, display.getBottom() - 9 - barHeight, 3, barHeight);
             }
-            for (std::size_t i = 0; i < added->templateInfo.knobs.size(); ++i)
+            for (std::size_t i = 0; i < std::min<std::size_t>(4, added->templateInfo.knobs.size()); ++i)
             {
                 const auto column = static_cast<int>(i % 2);
                 const auto row = static_cast<int>(i / 2);
@@ -2151,10 +2159,10 @@ private:
             return;
         }
         std::vector<std::unique_ptr<PedalHost::Effect>> loaded;
-        for (const auto& saved : board.pedals)
+        for (auto& saved : board.pedals)
         {
             const auto* pedal = saved.templateId == "custom" ? &customPedalTemplate() : findPedalTemplate(saved.templateId);
-            if (pedal == nullptr || (saved.loaded && saved.plugin.mappings.size() != static_cast<int>(pedal->knobs.size())))
+            if (pedal == nullptr || (saved.loaded && !upgradePedalMappings(*pedal, saved.plugin.mappings)))
             {
                 errorText = "The preset contains an unknown pedal or invalid knob assignments. The current board was kept.";
                 return;
@@ -2306,7 +2314,7 @@ private:
         const auto result = loadPedalPreset(file, *preset);
         if (result.failed()) { errorText = result.getErrorMessage(); return; }
         const auto* pedal = preset->templateId == "custom" ? &customPedalTemplate() : findPedalTemplate(preset->templateId);
-        if (pedal == nullptr || preset->mappings.size() != static_cast<int>(pedal->knobs.size()))
+        if (pedal == nullptr || !upgradePedalMappings(*pedal, preset->mappings))
         {
             errorText = "This pedal preset has an unknown template or invalid knob assignments.";
             return;

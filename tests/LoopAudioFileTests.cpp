@@ -32,6 +32,19 @@ int main()
     assert(savePedalPreset(pedalFile.getFile(), pedal).wasOk());
     assert(loadPedalPreset(pedalFile.getFile(), loadedPedal).wasOk() && loadedPedal.state.isEmpty());
 
+    juce::StringArray legacyMappings { "decay", "tone", "mix" };
+    assert(upgradePedalMappings(legacyMappings, 8, 3));
+    assert(legacyMappings.size() == 8 && legacyMappings[1] == "tone" && legacyMappings[2] == "mix");
+    juce::StringArray invalidMappings { "one", "two" };
+    assert(!upgradePedalMappings(invalidMappings, 8, 3) && invalidMappings.size() == 2);
+    auto extendedPedal = pedal;
+    extendedPedal.mappings = legacyMappings;
+    assert(savePedalPreset(pedalFile.getFile(), extendedPedal).wasOk());
+    assert(loadPedalPreset(pedalFile.getFile(), loadedPedal).wasOk() && loadedPedal.mappings == legacyMappings);
+    extendedPedal.mappings.add("too-many");
+    assert(savePedalPreset(pedalFile.getFile(), extendedPedal).wasOk());
+    assert(loadPedalPreset(pedalFile.getFile(), loadedPedal).failed());
+
     juce::TemporaryFile boardFile(".board");
     BoardPreset board;
     board.deckIndex = 1;

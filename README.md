@@ -77,6 +77,7 @@ ctest --test-dir build -C Release --output-on-failure
 
 For the browser-side layout regression checks, run `python -m http.server` from this folder and open `http://localhost:8000/tests/NativeLayoutTests.html`. The test uses a simulated native bridge and does not access audio devices.
 For the browser mockup popup checks, open `http://localhost:8000/tests/PopupTests.html` using the same server.
+In the Windows app, the default board uses the full pedal faces; the other visual views open those controls from the compact pedals. Assign VST parameters using the labels beneath the dials or mode switches. Older pedal and board presets retain their existing assignments.
 
 The first configuration downloads JUCE 8.0.8, a pinned official [ASIO SDK](https://github.com/audiosdk/asio), and the Microsoft WebView2 SDK via CMake. On Windows, the app embeds the Vintage Deck HTML/CSS in WebView2 and bridges its controls to the JUCE audio engine and device settings. This development build uses the ASIO SDK's GPLv3 option, selected by the project owner. Distribution must meet its GPLv3 requirements, including corresponding source; a closed-source release needs an appropriate proprietary license. Review [JUCE licensing](https://juce.com/legal/juce-8-licence/) as well before use or distribution. The downloaded SDK's license text is in `build\_deps\asio_sdk-src\LICENSE.txt`. ASIO is a trademark of Steinberg Media Technologies GmbH.
 

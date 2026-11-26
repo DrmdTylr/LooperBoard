@@ -362,7 +362,7 @@ body[data-concept="wood"] .board { --pedal-width: clamp(330px, calc((100cqw - 12
 body[data-concept="wood"] #pedals { align-items: stretch; gap: 22px; }
 body[data-concept="wood"] .pedal { width: var(--pedal-width); }
 body[data-concept="wood"] .drag-handle { user-select: none; z-index: 1; }
-html:not(.juce-hosted) body[data-study=""] #board { --board-pedal-height: 425px; }
+body[data-concept="wood"] { --board-pedal-height: 425px; }
 .board-pedal { position: relative; display: flex; flex: 0 0 auto; height: var(--board-pedal-height); flex-direction: column; justify-content: center; align-items: center; }
 .board-pedal-handle { position: absolute; bottom: calc(100% + 6px); padding: 4px 12px; color: #e6d4ba; font-size: 10px; font-weight: 800; letter-spacing: 1px; }
 .board-pedal .popup-shape-stompbox { width: var(--popup-width); height: var(--board-pedal-height); }
@@ -380,14 +380,14 @@ html:not(.juce-hosted) body[data-study=""] #board { --board-pedal-height: 425px;
 .board-pedal .popup-shape-delay { width: 523.476px; }
 .board-pedal .popup-art-label { width: 200%; }
 .board-pedal .popup-art-label .popup-parameter { field-sizing: content; font-size: 9px; }
-html:not(.juce-hosted) body[data-study=""] #pedals { align-items: center; }
-html:not(.juce-hosted) body[data-study=""] #pedals > .looper { height: var(--board-pedal-height); padding: 12px 18px; }
-html:not(.juce-hosted) body[data-study=""] #pedals > .looper .pedal-title { margin-bottom: 8px; }
-html:not(.juce-hosted) body[data-study=""] #pedals > .looper .deck-controls { padding: 4px 8px; margin-bottom: 4px; }
-html:not(.juce-hosted) body[data-study=""] #pedals > .looper .deck-face { padding: 7px 6px; }
-html:not(.juce-hosted) body[data-study=""] #pedals > .looper .loop-screen { min-height: 90px; }
-html:not(.juce-hosted) body[data-study=""] #pedals > .looper .footswitches { margin-top: 8px; }
-html:not(.juce-hosted) body[data-study=""] #pedals > .looper .looper-utility { margin-top: 4px; }
+body[data-study=""] #pedals { align-items: center; }
+body[data-study=""] #pedals > .looper { height: var(--board-pedal-height); padding: 12px 18px; }
+body[data-study=""] #pedals > .looper .pedal-title { margin-bottom: 8px; }
+body[data-study=""] #pedals > .looper .deck-controls { padding: 4px 8px; margin-bottom: 4px; }
+body[data-study=""] #pedals > .looper .deck-face { padding: 7px 6px; }
+body[data-study=""] #pedals > .looper .loop-screen { min-height: 90px; }
+body[data-study=""] #pedals > .looper .footswitches { margin-top: 8px; }
+body[data-study=""] #pedals > .looper .looper-utility { margin-top: 4px; }
 body[data-concept="wood"] .reordering {
   z-index: 3; cursor: grabbing; transform: translateY(-9px) scale(1.025);
   box-shadow: inset 0 0 0 1px #ffffff36, 0 22px 0 -7px #24150ccc, 0 30px 38px #000b;
@@ -407,8 +407,8 @@ body[data-concept="wood"] .rail {
 }
 body[data-concept="wood"] .rail-one { top: 130px; }
 body[data-concept="wood"] .rail-two { bottom: 110px; }
-html:not(.juce-hosted) body[data-study=""] .rail-one { top: 155px; }
-html:not(.juce-hosted) body[data-study=""] .rail-two { bottom: 135px; }
+body[data-study=""] .rail-one { top: 155px; }
+body[data-study=""] .rail-two { bottom: 135px; }
 body[data-concept="wood"] #cables .patch-cable-shadow { stroke: #090b0c; stroke-width: 9; }
 body[data-concept="wood"] #cables .patch-cable { stroke: #272a29; stroke-width: 6; }
 body[data-concept="wood"] #cables .patch-cable-highlight { stroke: #8d8a82; stroke-width: 1; opacity: .35; }
@@ -641,6 +641,11 @@ body[data-concept="wood"] .popup-art-dial .effect-knob::after { top: 10%; left: 
 .popup-art-screen button { padding: 3px 1px; font-size: clamp(7px, 1vw, 10px); line-height: 1.05; }
 .popup-art-remove { position: absolute; margin: 0; padding: 1.2% 2%; font-size: clamp(7px, 1vw, 10px); white-space: nowrap; transform: translate(-50%, -50%); }
 .popup-art-remove:active { transform: translate(-50%, -50%); }
+.native-art-remove { position: absolute; transform: translate(-50%, -50%); }
+.native-art-remove .popup-remove { margin: 0; padding: 5px 8px; font-size: 9px; white-space: nowrap; }
+.popup-art-screen .popup-plugin-actions { flex-wrap: wrap; }
+.popup-dial .parameter-value { min-height: 0; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 9px; }
+html.juce-hosted .popup-plugin strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .popup-art-switch { position: absolute; width: 12%; transform: translate(-50%, -50%); text-align: center; }
 .popup-art-switch .popup-footswitch { width: 100%; height: auto; aspect-ratio: 1; margin: 0; border-width: 4px; }
 .popup-art-switch .popup-footswitch span { width: 70%; height: 70%; }

@@ -9,16 +9,16 @@
 namespace BinaryData
 {
     extern const char*   index_html;
-    const int            index_htmlSize = 19782;
+    const int            index_htmlSize = 21423;
 
     extern const char*   styles_css;
-    const int            styles_cssSize = 60296;
+    const int            styles_cssSize = 72092;
 
     extern const char*   demo_js;
-    const int            demo_jsSize = 92158;
+    const int            demo_jsSize = 105711;
 
     extern const char*   native_js;
-    const int            native_jsSize = 62772;
+    const int            native_jsSize = 68937;
 
     extern const char*   blackplugged_png;
     const int            blackplugged_pngSize = 23971;

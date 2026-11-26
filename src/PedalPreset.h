@@ -11,6 +11,13 @@ struct PedalPreset
     bool bypassed = false;
 };
 
+inline bool upgradePedalMappings(juce::StringArray& mappings, int count, int legacyCount)
+{
+    if (mappings.size() != count && mappings.size() != legacyCount) return false;
+    while (mappings.size() < count) mappings.add({});
+    return true;
+}
+
 inline juce::Result writePedalPresetXml(juce::XmlElement& xml, const PedalPreset& preset)
 {
     if (preset.state.getSize() > 16 * 1024 * 1024)
@@ -51,7 +58,7 @@ inline juce::Result readPedalPresetXml(const juce::XmlElement& xml, PedalPreset&
     preset.bypassed = xml.getBoolAttribute("bypassed");
     for (const auto* knob : mappings->getChildIterator())
     {
-        if (!knob->hasTagName("KNOB") || !knob->hasAttribute("parameter") || preset.mappings.size() >= 4)
+        if (!knob->hasTagName("KNOB") || !knob->hasAttribute("parameter") || preset.mappings.size() >= 8)
             return juce::Result::fail("Invalid pedal knob assignments.");
         preset.mappings.add(knob->getStringAttribute("parameter"));
     }

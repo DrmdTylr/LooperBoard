@@ -28,11 +28,21 @@ static const unsigned char temp_binary_data_0[] =
 "      <a href=\"#board-2\" data-concept-link=\"board-2\"><span>02 / Moveable deck</span></a>\r\n"
 "      <a href=\"#board-3\" data-concept-link=\"board-3\"><span>03 / Three pages</span></a>\r\n"
 "      <a href=\"#gallery\" data-concept-link=\"gallery\"><span>Pedal gallery</span></a>\r\n"
+"      <a href=\"#popup\" data-concept-link=\"popup\"><span>Pedal popups</span></a>\r\n"
 "    </nav>\r\n"
 "    <span class=\"preview-badge\">INTERACTIVE MOCKUPS \xc2\xb7 NO AUDIO</span>\r\n"
 "  </div>\r\n"
 "\r\n"
 "  <main>\r\n"
+"    <section id=\"popup-study\" class=\"popup-study\" aria-labelledby=\"popup-study-title\" hidden>\r\n"
+"      <div class=\"popup-study-intro\">\r\n"
+"        <div><span class=\"eyebrow\">DESIGN STUDY / PEDAL DETAILS</span>\r\n"
+"          <h1 id=\"popup-study-title\">Meet your pedals.</h1>\r\n"
+"          <p>Choose a pedal to explore its controls and VST3 panel. Changes here are a visual simulation.</p></div>\r\n"
+"        <button type=\"button\" id=\"reset-popup-study\">Reset examples</button>\r\n"
+"      </div>\r\n"
+"      <div id=\"popup-examples\" class=\"popup-examples\"></div>\r\n"
+"    </section>\r\n"
 "    <section id=\"pedal-gallery\" class=\"pedal-gallery\" aria-labelledby=\"gallery-title\" hidden>\r\n"
 "      <div class=\"gallery-intro\">\r\n"
 "        <div><span class=\"eyebrow\">THE EFFECT COLLECTION / DESIGN STUDIES</span>\r\n"
@@ -199,6 +209,18 @@ static const unsigned char temp_binary_data_0[] =
 "    <button type=\"button\" class=\"study-close\" data-study-close aria-label=\"Close expanded pedal\">\xc3\x97</button>\r\n"
 "    <div id=\"study-expanded-pedal\"></div>\r\n"
 "  </dialog>\r\n"
+"  <dialog id=\"demo-vst-dialog\" aria-labelledby=\"demo-vst-title\">\r\n"
+"    <header class=\"dialog-header\"><div><span class=\"eyebrow\">PLUGIN BROWSER / DEMO</span><h2 id=\"demo-vst-title\">Choose a VST3</h2></div><button type=\"button\" data-demo-vst-close aria-label=\"Close VST3 browser\">\xe2\x9c\x95</button></header"
+">\r\n"
+"    <p class=\"demo-vst-note\">Example effects only. This preview cannot scan or load installed plugins.</p>\r\n"
+"    <label class=\"demo-vst-search\">Search examples<input id=\"demo-vst-search\" type=\"search\" placeholder=\"Search demo effects\"></label>\r\n"
+"    <div id=\"demo-vst-list\"></div>\r\n"
+"  </dialog>\r\n"
+"  <dialog id=\"demo-vst-editor\" aria-labelledby=\"demo-vst-editor-title\">\r\n"
+"    <header class=\"dialog-header\"><div><span class=\"eyebrow\">VST EDITOR / DEMO</span><h2 id=\"demo-vst-editor-title\"></h2></div><button type=\"button\" data-demo-vst-editor-close aria-label=\"Close demo VST editor\">\xe2\x9c\x95</button></header"
+">\r\n"
+"    <p class=\"demo-vst-note\">This is an editor preview. No VST is loaded in the browser.</p>\r\n"
+"  </dialog>\r\n"
 "  <dialog id=\"settings-dialog\">\r\n"
 "    <header class=\"dialog-header\"><div><span class=\"eyebrow\">MAKE IT YOURS</span><h2>Settings</h2></div><button data-close-dialog aria-label=\"Close settings\">\xe2\x9c\x95</button></header>\r\n"
 "    <div id=\"settings-tabs\" class=\"settings-tabs\" role=\"tablist\" aria-label=\"Settings categories\">\r\n"
@@ -276,10 +298,10 @@ const char* getNamedResource (const char* resourceNameUTF8, int& numBytes)
 
     switch (hash)
     {
-        case 0x2c834af8:  numBytes = 19782; return index_html;
-        case 0x096a0926:  numBytes = 60296; return styles_css;
-        case 0x5c7c8525:  numBytes = 92158; return demo_js;
-        case 0xc3e79671:  numBytes = 62772; return native_js;
+        case 0x2c834af8:  numBytes = 21423; return index_html;
+        case 0x096a0926:  numBytes = 72092; return styles_css;
+        case 0x5c7c8525:  numBytes = 105711; return demo_js;
+        case 0xc3e79671:  numBytes = 68937; return native_js;
         case 0x07efdf03:  numBytes = 23971; return blackplugged_png;
         case 0x1f00f3cb:  numBytes = 5092; return rightangleplugged_png;
         default: break;
